@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'users#signup'
   get 'users/signup'
   get 'users/login'
   get 'users/home'
