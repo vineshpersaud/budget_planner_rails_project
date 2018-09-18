@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-      session[:name] = @user.name
       redirect_to controller: 'users', action: 'home'
     else
       redirect_to controller: 'users', action: 'signup'
@@ -20,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def home
+    @user = User.find(session[:user_id])
   end
 
   private
