@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'event/new'
+  get 'event/edit'
   root 'users#signup'
   get 'users/signup'
   get 'login', to: "sessions#new"
