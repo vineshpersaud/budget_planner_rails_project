@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+    
+}
+

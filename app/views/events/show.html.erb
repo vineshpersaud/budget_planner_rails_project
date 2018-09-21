@@ -1,6 +1,7 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 
 
+<!– EVENT INFO ->
 <table>
   <tr>
     <th>Event name</th>
@@ -12,15 +13,29 @@
 </tr>
 </table>
 
+<br>
 
-<ul>
+<!– List of EXPENSES  –>
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Cost</th>
+      <th>Quantity</th>
+    </tr>
   <% @expenses.each do |expense|%>
-    <li><%= expense.name %></li> 
-    <li><%= expense.cost %></li> 
-    <li><%= expense.quantity %></li>
+    <tr>
+      <td><%= expense.name %></td> 
+      <td><%= expense.cost %></td> 
+      <td><%= expense.quantity %></td>
+    </tr>
   <%end%>
-</ul>
+  </table>
 
+<br><br>
+
+
+
+<!– form to create expense for current event  –>
 <%= form_for @expense, :url => url_for(:controller => 'expenses', :action => 'create') do |f|%>
   <%=f.label :name%>
   <%= f.text_field :name%>
