@@ -2,31 +2,33 @@
 
 
 <!– EVENT INFO ->
-<table>
+<table align="center">
   <tr>
     <th>Event name</th>
     <th>Budget</th>
   </tr>
   <tr>
-    <th><%= @event.name %></th>
-    <th><%= @event.budget%></th>
+    <td><%= @event.name %></td>
+    <td><%= @event.budget%></td>
 </tr>
 </table>
 
 <br>
 
 <!– List of EXPENSES  –>
-<table>
+<table align="center">
     <tr>
       <th>Name</th>
       <th>Cost</th>
       <th>Quantity</th>
+      <th>Total</th>
     </tr>
   <% @expenses.each do |expense|%>
     <tr>
       <td><%= expense.name %></td> 
-      <td><%= expense.cost %></td> 
+      <td><%= number_to_currency(expense.cost) %></td> 
       <td><%= expense.quantity %></td>
+      <td><%= number_to_currency(expense.total) %></td>
     </tr>
   <%end%>
   </table>
@@ -40,7 +42,7 @@
   <%=f.label :name%>
   <%= f.text_field :name%>
   <%=f.label :cost%>
-  <%= f.number_field :cost%>
+  <%= f.number_field :cost, class: :text_field, step: :any%>
   <%=f.label :quantity%>
   <%= f.number_field :quantity%>
   <%= f.hidden_field :event_id, :value => params[:id] %>

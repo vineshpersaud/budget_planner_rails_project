@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_203117) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "name"
-    t.integer "cost"
+    t.decimal "cost", precision: 8, scale: 2
     t.integer "quantity"
     t.integer "event_id"
     t.datetime "created_at", null: false
