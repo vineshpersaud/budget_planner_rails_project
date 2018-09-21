@@ -1,2 +1,31 @@
-<%= @event.name %>
-<%= @event.user_id %>
+<h3>Event Creator -  <%=@user.name%></h3>
+
+
+<table>
+  <tr>
+    <th>Event name</th>
+    <th>Budget</th>
+  </tr>
+  <tr>
+    <th><%= @event.name %></th>
+    <th><%= @event.budget%></th>
+</tr>
+</table>
+
+
+<ul>
+  <% @expenses.each do |expense|%>
+    <li><%= expense.name %></li>  
+  <%end%>
+</ul>
+
+<%= form_for @expense, :url => url_for(:controller => 'expenses', :action => 'create') do |f|%>
+  <%=f.label :name%>
+  <%= f.text_field :name%>
+  <%=f.label :cost%>
+  <%= f.number_field :cost%>
+  <%=f.label :quantity%>
+  <%= f.number_field :quantity%>
+  <%= f.hidden_field :event_id, :value => params[:id] %>
+  <%= f.submit "Add expense "%>
+<%end%>

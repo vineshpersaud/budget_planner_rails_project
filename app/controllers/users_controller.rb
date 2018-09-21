@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   
   def signup
-    @user = User.new
+    if logged_in?
+      redirect_to users_home_url
+    else
+      @user = User.new
+    end
   end
 
   def login
@@ -20,6 +24,7 @@ class UsersController < ApplicationController
 
   def home
     @user = User.find(session[:user_id])
+    @events = @user.events.all
   end
 
   private
