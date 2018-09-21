@@ -15,7 +15,9 @@
 
 <ul>
   <% @expenses.each do |expense|%>
-    <li><%= expense.name %></li>  
+    <li><%= expense.name %></li> 
+    <li><%= expense.cost %></li> 
+    <li><%= expense.quantity %></li>
   <%end%>
 </ul>
 
