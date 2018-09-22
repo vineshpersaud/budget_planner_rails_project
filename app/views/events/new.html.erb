@@ -6,7 +6,7 @@
   <%= f.text_field :name%>
 
   <%= f.label :budget%>
-  <%= f.number_field  :budget%>
+  <%= f.number_field  :budget, class: :text_field, step: :any%>
 
   <%= f.submit "Create Event" %>
 <%end%>

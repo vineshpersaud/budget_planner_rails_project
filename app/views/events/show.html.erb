@@ -9,7 +9,7 @@
   </tr>
   <tr>
     <td><%= @event.name %></td>
-    <td><%= @event.budget%></td>
+    <td><%= number_to_currency(@event.budget)%></td>
 </tr>
 </table>
 
@@ -35,7 +35,7 @@
 
 <br><br>
 
-
+<h3>Budget Balance <%= @difference%></h3> <br><br>  
 
 <!– form to create expense for current event  –>
 <%= form_for @expense, :url => url_for(:controller => 'expenses', :action => 'create') do |f|%>
@@ -48,3 +48,5 @@
   <%= f.hidden_field :event_id, :value => params[:id] %>
   <%= f.submit "Add expense "%>
 <%end%>
+
+
