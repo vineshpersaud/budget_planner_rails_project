@@ -1,2 +1,13 @@
 <h1>Event#edit</h1>
 <p>Find me in app/views/event/edit.html.erb</p>
+
+
+<%= form_for @event do |f| %>
+  <%= f.label :name%>
+  <%= f.text_field :name%>
+
+  <%= f.label :budget%>
+  <%= f.number_field  :budget, class: :text_field, step: :any%>
+
+  <%= f.submit "Create Event" %>
+<%end%>
