@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post "events/create", to: "events#create"
   post "expenses/create", to: "expenses#create"
   delete "/signout", to: "sessions#destroy"
+  delete "/event/delete", to: "event#destroy"
   resources :users
   resources :events
   resources :expenses

@@ -11,6 +11,7 @@
   </head>
   <body>
     <% if logged_in? %>
+      <%= link_to "Home", users_home_path(session[:id])%>
       <%= link_to "Log Out", signout_path, method: :delete %><br><br>
     <% end %>
     <%= yield %>
