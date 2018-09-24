@@ -27,6 +27,11 @@ class UsersController < ApplicationController
     @events = @user.events.all
   end
 
+  def shoppinglist
+    @user = User.find(session[:user_id])
+    @expenses = @user.expenses
+  end
+
   private
 
   def user_params

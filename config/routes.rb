@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'events/edit'
   root 'users#signup'
   get 'users/signup'
+  get 'users/shoppinglist'
   get 'login', to: "sessions#new"
   get 'users/home'
   post "sessions/create", to: "sessions#create"
