@@ -3,7 +3,7 @@ class Event < ApplicationRecord
  has_many :expenses
 
  validates :name, presence: true
- validates :budget , numericality: { greater_than_or_equal_to: 1 }
+ validates :budget , numericality: { greater_than: 0 }
 
   def budget_difference
     expenses_array = self.expenses.collect { |event| event.total }
