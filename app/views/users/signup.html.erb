@@ -1,5 +1,17 @@
 <h1>Users Signup</h1>
 
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <% if  message != "Password digest can't be blank"%>
+        <li><%= message %></li> 
+      <%end%>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 
 <p><a type="submit" href="/login">Login</a></p>

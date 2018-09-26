@@ -1,4 +1,4 @@
-class Expense < ApplicationRecord
+class Expense < ActiveRecord::Base
   belongs_to :event
 
  validates :name, presence: true

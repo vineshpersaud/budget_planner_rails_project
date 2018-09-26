@@ -14,11 +14,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    @errors = @user.errors.full_messages
       if @user.save
         session[:user_id] = @user.id
-        redirect_to controller: 'users', action: 'home'
-      else
-        redirect_to controller: 'users', action: 'signup'
+        redirect_to users_home_path
+      else 
+        # use render to keep @user data
+        render :signup
       end
   end
 
