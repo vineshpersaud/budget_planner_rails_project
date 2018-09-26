@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show,:edit,:update,:destroy]
+  
   def new
     @event = Event.new
   end
@@ -14,7 +16,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @user = User.find(@event.user_id)
     @expense = Expense.new
     @expenses  = @event.expenses.all
@@ -22,11 +23,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -35,13 +34,16 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
     redirect_to users_home_path(session[:id])
   end
 
 
   private
+
+    def set_event
+      @event = Event.find(params[:id])
+    end
 
     def event_params
       params.require(:event).permit(:name,:budget,:users_id)
