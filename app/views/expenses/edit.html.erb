@@ -1,0 +1,9 @@
+<%= form_for @expense do |f|%>
+  <%=f.label :name%>
+  <%= f.text_field :name%>
+  <%=f.label :cost%>
+  <%= f.number_field :cost, class: :text_field, step: :any %>
+  <%=f.label :quantity%>
+  <%= f.number_field :quantity%>
+  <%= f.submit "Update expense "%>
+<%end%>

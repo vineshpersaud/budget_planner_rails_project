@@ -1,5 +1,17 @@
 class ExpensesController < ApplicationController
 
+  def edit
+    @expense = Expense.find(params[:id])
+  end
+
+  def update
+    @expense = Expense.find(params[:id])
+    if @expense.update(expense_params)
+      redirect_to event_path(@expense.event.id)
+    else
+      render :edit
+    end
+  end
 
   def create
     @expense = Expense.create(expense_params)
