@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post "expenses/create", to: "expenses#create"
   delete "/signout", to: "sessions#destroy"
   delete "/event/delete", to: "event#destroy"
+  get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/facebook/callback' => 'sessions#create'
   resources :users
   resources :events
   resources :expenses

@@ -44,9 +44,9 @@
   <%=f.label :name%>
   <%= f.text_field :name%>
   <%=f.label :cost%>
-  <%= f.number_field :cost, class: :text_field, step: :any%>
+  <%= f.number_field :cost, class: :text_field, step: :any %>
   <%=f.label :quantity%>
-  <%= f.number_field :quantity%>
+  <%= f.number_field :quantity, value: 1%>
   <%= f.hidden_field :event_id, :value => params[:id] %>
   <%= f.submit "Add expense "%>
 <%end%>
