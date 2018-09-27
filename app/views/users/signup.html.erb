@@ -8,7 +8,10 @@
     <ul>
       <% @user.errors.full_messages.each do |message| %>
       <% if  message != "Password digest can't be blank"%>
+      <div class="alert alert-danger">
         <li><%= message %></li> 
+      </div>
+        
       <%end%>
       <% end %>
     </ul>

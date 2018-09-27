@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    
     @user = User.find(@event.user_id)
     @expense = Expense.new
     @expenses  = @event.expenses.all

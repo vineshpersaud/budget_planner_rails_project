@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.4'
 
+gem 'rack-flash3'
 gem 'dotenv-rails'
 gem 'bcrypt'
 gem 'omniauth'

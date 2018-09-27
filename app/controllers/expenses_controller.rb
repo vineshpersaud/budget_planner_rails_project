@@ -16,7 +16,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.create(expense_params)
     @expense.save
-    redirect_to event_path(@expense.event_id)
+    redirect_to event_path(@expense.event_id),:flash => { :alert => @expense.errors.full_messages.join(', ') }
   end
 
   def destroy
