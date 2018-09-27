@@ -14,3 +14,23 @@ th, td {
 
 }
 
+.form{
+  padding: 70%: 
+  width: 100%;
+  padding: 85px;
+ 
+  margin-left: 30%;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form input {
+  display: inline-block;
+  float: right;
+  width: 100%
+
+}
+
+
+
