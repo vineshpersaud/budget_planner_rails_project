@@ -42,8 +42,16 @@
 <h3>Budget Balance <%= @difference%></h3> <br><br>  
 
   <% if flash[:alert] %>
-  
-    <div class="alert alert-danger"><%= flash[:alert] %></div>
+
+    <ul>
+      <%flash[:alert].each do |message| %>
+      <li>
+      <div class="alert alert-danger">
+        <%=message %>
+      </div>
+      </li>
+      <%end%>
+    </ul>
   <% end %>
 
 
