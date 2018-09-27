@@ -1,14 +1,15 @@
 <h1>Users#login</h1>
 <p>Find me in app/views/sessions/new.html.erb</p>
 
-
-<%= form_for @user , :url => url_for(:controller => 'sessions', :action => 'create') do  |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %><br><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br><br>
-  <%= f.submit "Login"%>
-<% end %>
+<div class="form">
+  <%= form_for @user , :url => url_for(:controller => 'sessions', :action => 'create') do  |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %><br><br>
+    <%= f.label :password %>
+    <%= f.password_field :password %><br><br>
+    <%= f.submit "Login"%>
+  <% end %>
+</div>
 <br><br>
 
 

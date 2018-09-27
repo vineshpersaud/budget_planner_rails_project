@@ -6,9 +6,9 @@ class SessionsController < ApplicationController
 
   def create
     
-    if oauth_email = request.env["omniauth.auth"]["info"]["email"]
-     
-      @user = User.find_or_create_by(email: oauth_email) do |u|
+    if    request.env['omniauth.auth']
+          oauth_email = request.env["omniauth.auth"]["info"]["email"] 
+          @user = User.find_or_create_by(email: oauth_email) do |u|
           u.name = request.env["omniauth.auth"]["info"]["name"]
           u.email = request.env["omniauth.auth"]["info"]["email"]
           u.password = SecureRandom.hex
