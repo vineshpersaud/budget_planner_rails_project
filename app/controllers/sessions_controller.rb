@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    
     if    request.env['omniauth.auth']
           oauth_email = request.env["omniauth.auth"]["info"]["email"] 
           @user = User.find_or_create_by(email: oauth_email) do |u|
@@ -21,7 +20,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to controller: 'users', action: 'home'
       else
-        redirect_to login_path
+        redirect_to login_path,:flash => { :alert => @user.errors.full_messages }
       end
     end
   end
