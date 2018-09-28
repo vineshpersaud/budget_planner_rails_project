@@ -1,5 +1,4 @@
-<h1>Event#new</h1>
-<p>Find me in app/views/event/new.html.erb</p>
+<h1>Create New Event</h1>
 
 
 <!-Display Errors for event create if error ->
@@ -9,7 +8,9 @@
     <ul>
       <% @event.errors.full_messages.each do |message| %>
       <% if  message != "Password digest can't be blank"%>
-        <li><%= message %></li> 
+        <div class="alert alert-danger">
+          <li><%= message %></li> 
+        </div>
       <%end%>
       <% end %>
     </ul>
