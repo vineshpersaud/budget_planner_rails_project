@@ -1,4 +1,4 @@
-# Wish List Sinatra Project
+# Rails Event Budget Planner Project
 
 
 ## Purpose of project
