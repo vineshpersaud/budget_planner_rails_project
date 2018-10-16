@@ -1,3 +1,16 @@
+<table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+    </tr>
+
 <% @expenses.each do |expense| %>
-  <%= expense.name %>
+  <tr>
+    <td><%= expense.name %> </td>
+    <td><%= expense.quantity %></td>
+    <!-- '%.2f' % adds two decimal places for cost-->
+    <td>$<%= '%.2f' % expense.cost %></td>
+  </tr>
 <%end%>
+</table>

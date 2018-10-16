@@ -1,3 +1,8 @@
+body{
+  background-color: #C0D6EA;
+}
+
+
 table {
     width: 90%;
     
@@ -18,11 +23,12 @@ th, td {
   padding: 70%: 
   width: 100%;
   padding: 85px;
- 
-  margin-left: 30%;
+  margin-left: 38%;
+  margin-top: 8%;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  border-radius: 20px;
+  background: #E8E6E3;
 }
 
 .form input {
