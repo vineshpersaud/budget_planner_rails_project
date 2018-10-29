@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
     @event.user_id = session[:user_id]
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to user_event_url(session[:user_id], @event)
     else
       render :new
     end
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to event_path(@event)
+      redirect_to user_event_url(@event)
     else
       render :edit
     end

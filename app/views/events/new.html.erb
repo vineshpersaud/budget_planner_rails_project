@@ -18,7 +18,7 @@
 <% end %>
 
 
-<%= form_for @event, controller: 'events', action: 'create'   do |f| %>
+<%= form_for @event, url: events_create_path  do |f| %>
   <%= f.label :name%>
   <%= f.text_field :name%>
 

@@ -1,7 +1,7 @@
 Welcome <%=  @user.name %>
 
 
-  <%= link_to "Create New Event", new_event_path %>
+  <%= link_to "Create New Event", new_user_event_url(@user) %>
 
 
 
@@ -13,9 +13,9 @@ Welcome <%=  @user.name %>
   <% @events.each do |event| %>
   <tr>
     
-    <td><%= link_to event.name, event_path(event)%></td>  
+    <td><%= link_to event.name, user_event_path(@user,event)%></td>  
     <td><%= event.budget%></td> 
-    <td><%= link_to "Delete" , event_path(event), :method => :delete%></td>
+    <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
   </tr>
    <%end%> 
 </table>
