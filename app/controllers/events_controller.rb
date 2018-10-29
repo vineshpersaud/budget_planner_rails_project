@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show,:edit,:update,:destroy]
+  before_action :set_user, only: [:show,:edit,:update,:destroy]
   
   def new
     @event = Event.new
@@ -9,7 +10,7 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
     @event.user_id = session[:user_id]
     if @event.save
-      redirect_to user_event_url(session[:user_id], @event)
+      redirect_to user_event_url(@event.user_id, @event)
     else
       render :new
     end
@@ -36,11 +37,16 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to users_home_path(session[:id])
+    redirect_to users_home_path(@user)
   end
 
 
   private
+
+    def set_user
+      @user = session[:user_id]
+    end
+  
 
     def set_event
       @event = Event.find(params[:id])

@@ -11,7 +11,7 @@
   <tr>
     <td><%= @event.name %></td>
     <td><%= number_to_currency(@event.budget)%></td>
-    <td><%= link_to "Edit Event", edit_user_event_path(@event)%></td>
+    <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
 </tr>
 </table>
 

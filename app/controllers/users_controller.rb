@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def signup
     if logged_in?
       redirect_to users_home_url
