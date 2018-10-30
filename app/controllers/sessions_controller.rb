@@ -15,13 +15,17 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to users_home_url        
     else
+    flash[:password] = "Missing Password Feild" if params[:user][:password] == ""
+    flash[:email] = "Missing Email Feild" if params[:user][:email] == ""
     @user = User.find_by(email: params[:user][:email])
-      if @user && @user.authenticate(params[:user][:password])
+    if @user && @user.authenticate(params[:user][:password])
         session[:user_id] = @user.id
-        redirect_to controller: 'users', action: 'home'
-      else
-        redirect_to login_path,:flash => { :alert => @user.errors.full_messages }
-      end
+        redirect_to users_home_path
+    else
+      
+      flash[:message] = "Incorrect Password"
+      redirect_to login_path
+    end
     end
   end
 

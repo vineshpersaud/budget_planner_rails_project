@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         redirect_to users_home_path
       else 
         # use render to keep @user data
-        render :signup
+        render :signup,:flash => { :alert => @user.errors.full_messages }
       end
   end
 
