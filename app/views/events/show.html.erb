@@ -31,8 +31,8 @@
       <td><%= number_to_currency(expense.cost) %></td> 
       <td><%= expense.quantity %></td>
       <td><%= number_to_currency(expense.total) %></td>
-      <td><%= link_to "Edit", edit_expense_path(expense)%></td>
-      <td><%= link_to "Delete" , expense_path(expense), :method => :delete%></td>
+      <td><%= link_to "Edit", edit_user_event_expense_path(expense.event.user_id,expense.event_id,expense)%></td>
+      <td><%= link_to "Delete" , user_event_expense_path(expense.event.user_id,expense.event_id,expense.id), :method => :delete%></td>
     </tr>
   <%end%>
   </table>

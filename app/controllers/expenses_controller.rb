@@ -6,7 +6,6 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    
     if @expense.update(expense_params)
       redirect_to user_event_path(@user,@expense.event.id)
     else
@@ -15,7 +14,8 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @expense = Expense.create(expense_params)
+    @event =  Event.find(params[:expense][:event_id])
+    @expense = @event.expenses.build(expense_params)
     @expense.save
     redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
   end

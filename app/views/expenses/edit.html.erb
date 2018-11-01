@@ -1,6 +1,6 @@
 <h1>Edit Expense</h1>
 
-<%= form_for @expense do |f|%>
+<%= form_for @expense , url:  user_event_expense_path(params[:user_id],params[:event_id],params[:id]) , :method => :PATCH  do |f|%>
   <%=f.label :name%>
   <%= f.text_field :name%>
   <%=f.label :cost%>
