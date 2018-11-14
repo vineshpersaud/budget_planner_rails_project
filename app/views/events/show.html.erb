@@ -1,6 +1,10 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 
-
+<% if @event.active  == true %>
+  <h1>active</h1>
+ <%else%>
+ <h1>not active</h1>
+ <%end%>
 <!– EVENT INFO ->
 <table align="center">
   <tr>
@@ -16,6 +20,7 @@
 </table>
 
 <br>
+
 
 <!– List of EXPENSES  –>
 <table align="center">
@@ -42,7 +47,6 @@
 <h3>Budget Balance <%= @difference%></h3> <br><br>  
 
   <% if flash[:alert] %>
-
     <ul>
       <%flash[:alert].each do |message| %>
       <li>
@@ -67,5 +71,8 @@
   <%= f.hidden_field :event_id, :value => params[:id] %>
   <%= f.submit "Add expense "%>
 <%end%>
+
+<%= link_to 'Deactivate', user_event_path(@user,@event), class: 'btn btn-danger',method: :deactivate%>
+
 
 

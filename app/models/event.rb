@@ -5,6 +5,10 @@ class Event < ActiveRecord::Base
  validates :name, presence: true
  validates :budget , numericality: { greater_than: 0 }
 
+
+# scope method
+scope :over_budget,-> {where("budget  > 50")}
+
   def budget_difference
     expenses_array = self.expenses.collect { |event| event.total }
     expenses_total = expenses_array.inject(0){|sum,x| sum + x }

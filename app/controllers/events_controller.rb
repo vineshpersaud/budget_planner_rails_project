@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show,:edit,:update,:destroy]
+  before_action :set_event, only: [:show,:edit,:update,:destroy,:deactivate]
   before_action :set_user, only: [:show,:edit,:update,:destroy]
   
   def new
@@ -38,6 +38,11 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     redirect_to users_home_path(@user)
+  end
+
+  def deactivate
+    @event.active = false
+    @event.save
   end
 
 

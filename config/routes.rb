@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   get '/auth/facebook/callback' => 'sessions#create'
 
+  post "users/:id/events/:id", to: "events#deactivate"
 
 
   
