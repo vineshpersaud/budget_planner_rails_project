@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show,:edit,:update,:destroy,:deactivate]
-  before_action :set_user, only: [:show,:edit,:update,:destroy]
+  before_action :set_user, only: [:show,:edit,:update,:destroy,:deactivate]
   
   def new
     @event = Event.new
@@ -17,7 +17,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    
     @user = User.find(@event.user_id)
     @expense = Expense.new
     @expenses  = @event.expenses.all
@@ -41,8 +40,9 @@ class EventsController < ApplicationController
   end
 
   def deactivate
-    @event.active = false
+    @event.active = !@event.active
     @event.save
+    redirect_to user_event_path(@user,@event)
   end
 
 
