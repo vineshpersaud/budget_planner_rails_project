@@ -71,8 +71,13 @@
   <%= f.hidden_field :event_id, :value => params[:id] %>
   <%= f.submit "Add expense "%>
 <%end%>
+<br>
 
+<%if @event.active == false %>
+<%= link_to 'Activate', user_event_path(@user,@event), class: 'btn btn-success',method: :deactivate%>
+<%else%>
 <%= link_to 'Deactivate', user_event_path(@user,@event), class: 'btn btn-danger',method: :deactivate%>
+<%end%>
 
 
 

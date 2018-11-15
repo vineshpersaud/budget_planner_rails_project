@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def home
     @user = User.find(session[:user_id])
     @events = @user.events.all
+    @ended_events = Event.over.map {|event|  event if event.user_id == @user.id && event}.compact
   end
 
   def shoppinglist

@@ -7,8 +7,5 @@ class User < ActiveRecord::Base
   validates :password_digest, :presence => true
   validates :email, :uniqueness => true 
   has_secure_password
-
-  # scope method
-  #scope :no_events, -> { joins(:events).where("events.budget_difference" < 0) }
                     
 end

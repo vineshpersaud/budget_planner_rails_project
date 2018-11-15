@@ -12,8 +12,7 @@ Welcome <%=  @user.name %>
   </tr>
   <% @events.each do |event| %>
   <tr>
-    
-    <td><%= link_to event.name, user_event_path(@user,event)%></td>  
+    <td><%= link_to event.name, user_event_path(@user,event)%></td> 
     <td><%= event.budget%></td> 
     <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
   </tr>
@@ -21,3 +20,13 @@ Welcome <%=  @user.name %>
 </table>
 
 <h3><%= link_to "Shopping List", users_shoppinglist_path %></h3>
+
+<br>
+<% if @ended_events %>
+  <h3>Ended Events</h3>
+  <ul>
+  <% @ended_events.each do |event|%>
+    <li><h4><%= link_to event.name, user_event_path(@user,event)%></h4></li>
+  <%end%>
+  </ul>
+<% end %>

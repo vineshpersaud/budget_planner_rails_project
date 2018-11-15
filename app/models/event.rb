@@ -7,11 +7,13 @@ class Event < ActiveRecord::Base
 
 
 # scope method
-scope :over_budget,-> {where("budget  > 50")}
+scope :over,-> {where(active: false)}
 
   def budget_difference
     expenses_array = self.expenses.collect { |event| event.total }
     expenses_total = expenses_array.inject(0){|sum,x| sum + x }
     return self.budget - expenses_total 
   end
+
+
 end
