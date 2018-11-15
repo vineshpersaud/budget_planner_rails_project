@@ -9,24 +9,36 @@ Welcome <%=  @user.name %>
 <table>
   <tr>
     <td>Event name</td>
+    <td>Event Budget</td>
   </tr>
   <% @events.each do |event| %>
-  <tr>
-    <td><%= link_to event.name, user_event_path(@user,event)%></td> 
-    <td><%= event.budget%></td> 
-    <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
-  </tr>
+    <% if event.active %>
+      <tr>
+        <td><%= link_to event.name, user_event_path(@user,event)%></td> 
+        <td><%= event.budget%></td> 
+        <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
+      </tr>
+    <%end%>
    <%end%> 
 </table>
 
 <h3><%= link_to "Shopping List", users_shoppinglist_path %></h3>
 
 <br>
+
 <% if @ended_events %>
   <h3>Ended Events</h3>
-  <ul>
-  <% @ended_events.each do |event|%>
-    <li><h4><%= link_to event.name, user_event_path(@user,event)%></h4></li>
-  <%end%>
-  </ul>
+  <table>
+    <tr>
+      <td>Event name</td>
+      <td>Event Budget</td>
+    </tr>
+    <% @ended_events.each do |event|%>
+        <tr>
+          <td><%= link_to event.name, user_event_path(@user,event)%></td> 
+          <td><%= event.budget%></td> 
+          <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
+        </tr>
+    <%end%>
+  </table>
 <% end %>
