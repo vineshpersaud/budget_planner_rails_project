@@ -71,31 +71,32 @@
   <% end %>
 
 
+<% if @event.active  == true %>
 
-<!– form to create expense for current event  –>
-<%= form_for @expense, :url => url_for(:controller => 'expenses', :action => 'create') do |f|%>
-  <%=f.label :name%>
-  <%= f.text_field :name%>
-  <%=f.label :cost%>
-  <%= f.number_field :cost, class: :text_field, step: :any %>
-  <%=f.label :quantity%>
-  <%= f.number_field :quantity, value: 1%>
-  <%= f.hidden_field :event_id, :value => params[:id] %>
-  <%= f.submit "Add expense "%>
-<%end%>
-<br>
-
-<!– Form for new guest  –>
-<div>
-  <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
-    <%f.label :name%>
+  <!– form to create expense for current event  –>
+  <%= form_for @expense, :url => url_for(:controller => 'expenses', :action => 'create') do |f|%>
+    <%=f.label :name%>
     <%= f.text_field :name%>
+    <%=f.label :cost%>
+    <%= f.number_field :cost, class: :text_field, step: :any %>
+    <%=f.label :quantity%>
+    <%= f.number_field :quantity, value: 1%>
     <%= f.hidden_field :event_id, :value => params[:id] %>
-    <%=f.submit "Add New Guest"%>
+    <%= f.submit "Add expense "%>
   <%end%>
-</div>
+  <br>
 
+  <!– Form for new guest  –>
+  <div>
+    <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
+      <%f.label :name%>
+      <%= f.text_field :name%>
+      <%= f.hidden_field :event_id, :value => params[:id] %>
+      <%=f.submit "Add New Guest"%>
+    <%end%>
+  </div>
 
+<%end%>
 
 <h2>Guest List</h2>
 <ul>
