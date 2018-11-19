@@ -16,6 +16,11 @@ class GuestsController < ApplicationController
     redirect_to user_event_path(@user_id,@event_id)
   end
 
+  def show
+    @guest = Guest.find(params[:id])
+    @events = @guest.events
+  end
+
   private
 
   def guest_params

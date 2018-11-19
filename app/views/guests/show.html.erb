@@ -1,0 +1,11 @@
+<h2>Guest Name - <%=@guest.name%></h2>
+<br>
+
+<h4>Events</h4>
+<div>
+  <ul>
+    <%@events.each do |event|%>
+    <li><%= event.name%></li>    
+    <%end%>
+  </ul>
+</div>

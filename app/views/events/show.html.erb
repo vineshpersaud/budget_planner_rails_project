@@ -102,7 +102,7 @@
 <h2>Guest List</h2>
 <ul>
   <%@guests.each do |guest|%>
-    <li><%=guest.name%></li>
+    <li><%= link_to guest.name, guest_path(guest) %></li>
   <%end%>
 </ul>
 

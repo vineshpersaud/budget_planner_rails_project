@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   post "users/:id/events/:id", to: "events#deactivate"
   
+   resources :guests , only: [ :show]
 
   
 
