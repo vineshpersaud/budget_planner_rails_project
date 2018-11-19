@@ -21,6 +21,10 @@ class GuestsController < ApplicationController
     @events = @guest.events
   end
 
+  def index
+    @guests = Guest.all
+  end
+
   private
 
   def guest_params
