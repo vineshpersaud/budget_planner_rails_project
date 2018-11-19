@@ -22,7 +22,7 @@ class GuestsController < ApplicationController
   end
 
   def index
-    @guests = Guest.all
+    @guests = Guest.ordered_by_name
   end
 
   private
