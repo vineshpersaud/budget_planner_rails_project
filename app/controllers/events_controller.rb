@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @guests = @event.guests
     params[:event_id] = @event.id
     @user = User.find(@event.user_id)
     @expense = Expense.new
