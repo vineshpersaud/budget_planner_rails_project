@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   
 
   
-resources :guest
+resources :guests
   
   resources :users do
     resources :events do
