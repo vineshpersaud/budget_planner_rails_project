@@ -17,12 +17,12 @@ class EventsController < ApplicationController
   end
 
   def show
+    params[:event_id] = @event.id
     @user = User.find(@event.user_id)
     @expense = Expense.new
     @guest = Guest.new
     @expenses  = @event.expenses.all
     @difference = @event.budget_difference
-    @guests =  @event.guest.all
   end
 
   def edit

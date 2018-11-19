@@ -74,7 +74,7 @@
 <br>
 
 <div>
-  <%= form_for @guest,:url => url_for(:controller => 'guest', :action => 'create')  do |f|%>
+  <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
     <%f.label :name%>
     <%= f.text_field :name%>
     <%= f.hidden_field :event_id, :value => params[:id] %>

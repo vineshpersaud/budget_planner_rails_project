@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
  belongs_to :user
  has_many :expenses
  has_and_belongs_to_many :guests
+ has_many :invitations
  
  validates :name, presence: true
  validates :budget , numericality: { greater_than: 0 }

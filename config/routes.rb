@@ -25,10 +25,14 @@ Rails.application.routes.draw do
   
 
   
-resources :guests
+
+
   
   resources :users do
     resources :events do
+      resources :guests do 
+        resources :invitations
+      end
       resources :expenses , only: [ :edit, :update, :destroy,:create]
       
     end
