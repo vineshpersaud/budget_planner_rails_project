@@ -1,10 +1,22 @@
 <h3>Event Creator -  <%=@user.name%></h3>
+<br>
 
 <% if @event.active  == true %>
-  <h1>active</h1>
+  <h5>Event Status- Ongoing</h5>
  <%else%>
- <h1>not active</h1>
+ <h5>Event Status- Over</h5>
  <%end%>
+ 
+
+ <!–button to end event –>
+ <div>
+  <%if @event.active == false %>
+  <%= link_to 'Continue Event', user_event_path(@user,@event), class: 'btn btn-success',method: :deactivate%>
+  <%else%>
+  <%= link_to 'End This Event', user_event_path(@user,@event), class: 'btn btn-danger',method: :deactivate%>
+  <%end%>
+</div>
+
 <!– EVENT INFO ->
 <table align="center">
   <tr>
@@ -73,6 +85,7 @@
 <%end%>
 <br>
 
+<!– Form for new guest  –>
 <div>
   <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
     <%f.label :name%>
@@ -82,13 +95,9 @@
   <%end%>
 </div>
 
-<%if @event.active == false %>
-<%= link_to 'Activate', user_event_path(@user,@event), class: 'btn btn-success',method: :deactivate%>
-<%else%>
-<%= link_to 'Deactivate', user_event_path(@user,@event), class: 'btn btn-danger',method: :deactivate%>
-<%end%>
 
-<h1>Guest</h1>
+
+<h2>Guest List</h2>
 <ul>
   <%@guests.each do |guest|%>
     <li><%=guest.name%></li>
