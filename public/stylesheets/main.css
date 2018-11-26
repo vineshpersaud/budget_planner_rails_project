@@ -45,6 +45,13 @@ th, td {
 li  {
   list-style: none;
 }
+.fb-login{
+  background-color: #3B5998;
+  color: white;
+  font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+  font-size: 14px;
+  border-radius: 25px;
+}
 
 
 
