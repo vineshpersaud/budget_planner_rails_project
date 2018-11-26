@@ -1,6 +1,12 @@
 <h1>Users Signup</h1>
 
 
+<% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%=flash[:message] %>
+      </div>
+  <% end %>
+
 <!-Display Errors for user signup if error ->
 <% if @user.errors.any? %>
   <div id="error_explanation">

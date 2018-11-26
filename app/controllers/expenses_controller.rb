@@ -14,10 +14,14 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    @event =  Event.find(params[:expense][:event_id])
-    @expense = @event.expenses.build(expense_params)
-    @expense.save
-    redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+    if params[:user_id] = session[:user_id]
+      @event =  Event.find(params[:expense][:event_id])
+      @expense = @event.expenses.build(expense_params)
+      @expense.save
+      redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+    else
+      redirect_to root_url 
+    end
   end
 
   def destroy
