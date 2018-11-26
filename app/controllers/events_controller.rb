@@ -43,9 +43,13 @@ class EventsController < ApplicationController
   end
 
   def deactivate
-    @event.active = !@event.active
-    @event.save
-    redirect_to user_event_path(@user,@event)
+    if params[:user_id] = session[:user_id]
+      @event.active = !@event.active
+      @event.save
+      redirect_to user_event_path(@user,@event)
+    else  
+      redirect_to root_url
+    end
   end
 
 
