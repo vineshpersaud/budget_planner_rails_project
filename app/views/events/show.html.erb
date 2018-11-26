@@ -70,6 +70,12 @@
     </ul>
   <% end %>
 
+  <% if flash[:message] %>
+      <div class="alert alert-danger">
+        <%=flash[:message] %>
+      </div>
+  <% end %>
+
 
 <% if @event.active  == true %>
 
@@ -89,7 +95,7 @@
   <!– Form for new guest  –>
   <div>
     <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
-      <%= f.collection_select :id, Guest.all, :id, :name, include_blank: true %>
+      <%= f.collection_select :id, Guest.all, :id, :name %>
       <%f.label :name%>
       <%= f.text_field :name%>
       <%= f.hidden_field :event_id, :value => params[:id] %>
