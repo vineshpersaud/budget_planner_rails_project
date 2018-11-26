@@ -6,10 +6,14 @@ class ExpensesController < ApplicationController
   end
 
   def update
-    if @expense.update(expense_params)
-      redirect_to user_event_path(@user,@expense.event.id)
+    if params[:user_id] = session[:user_id]
+      if @expense.update(expense_params)
+        redirect_to user_event_path(@user,@expense.event.id)
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to root_url
     end
   end
 
@@ -25,9 +29,13 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    @event = @expense.event_id
-    @expense.destroy
-    redirect_to user_event_path(@user,@event)
+    if params[:user_id] = session[:user_id]
+      @event = @expense.event_id
+      @expense.destroy
+      redirect_to user_event_path(@user,@event)
+    else
+      redirect_to root_url
+    end
   end
 
   private
