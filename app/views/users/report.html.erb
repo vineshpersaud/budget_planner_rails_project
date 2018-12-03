@@ -1,0 +1,13 @@
+<%=@user.name%>
+<%@user.events.each do |event|%>
+  <h2><%= event.name%></h2>
+  <%= event.budget%>
+  <%= event.guests.count %>
+  <ol>
+    <% event.guests.ordered_by_name.each do |guest|%>
+    <li><%= guest.name%></li>  
+    <%end%> 
+
+  </ol>
+<%end%>
+  

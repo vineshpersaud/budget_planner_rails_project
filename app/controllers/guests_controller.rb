@@ -6,7 +6,7 @@ class GuestsController < ApplicationController
 
   def create
     @guest = Guest.find(params[:guest][:id]) if params[:guest][:id] != ""
-    if @guest == nil
+    if @guest == nil ||  @guest.name == ""
       @guest = Guest.new(guest_params)
       @guest.save
     end

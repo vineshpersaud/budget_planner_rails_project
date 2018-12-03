@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.3.4'
+ruby "2.4.4"
 gem 'pry'
 gem 'rack-flash3'
 gem 'dotenv-rails'
