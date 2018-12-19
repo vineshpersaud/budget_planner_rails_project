@@ -24,6 +24,10 @@ class EventsController < ApplicationController
     @guest = Guest.new
     @expenses  = @event.expenses.all
     @difference = @event.budget_difference
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @event.to_json}
+    end
   end
 
   def edit
