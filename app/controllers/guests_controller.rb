@@ -28,6 +28,10 @@ class GuestsController < ApplicationController
 
   def index
     @guests = Guest.ordered_by_name
+    respond_to do |format| 
+      format.html {render :index}
+      format.json {render json: @guests.to_json}
+    end
   end
 
   private
