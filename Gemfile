@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.4.4"
+gem 'active_model_serializers'
 gem 'pry'
 gem 'rack-flash3'
 gem 'dotenv-rails'
