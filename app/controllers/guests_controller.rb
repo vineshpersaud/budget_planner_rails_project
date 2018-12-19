@@ -30,7 +30,7 @@ class GuestsController < ApplicationController
     @guests = Guest.ordered_by_name
     respond_to do |format| 
       format.html {render :index}
-      format.json {render json: @guests.to_json}
+      format.json {render json: @guests, status: 200}
     end
   end
 
