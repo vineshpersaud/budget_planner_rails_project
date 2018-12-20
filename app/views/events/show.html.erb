@@ -1,7 +1,7 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
-<a href="#" class="js-next" data-id="<%=@event.id%>">Next Event...</a>
+<a href="#" class="js-next" data-id="<%=@event.id%>" user-id="<%=@user.id%>">Next Event...</a>
 
 <% if @event.active  == true %>
   <h5>Event Status- Ongoing</h5>
@@ -27,7 +27,7 @@
     <th></th>
   </tr>
   <tr>
-    <td><%= @event.name %></td>
+    <td class="eventName"><%= @event.name %></td>
     <td><%= number_to_currency(@event.budget)%></td>
     <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
 </tr>
@@ -117,8 +117,13 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
-    alert("working")
-   
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    let userId = parseInt($(".js-next").attr("user-id"));
+    $.getJSON("/users/" + userId +"/events/" + nextId + ".json", function(data) {
+      $(".eventName").text(data["name"]);
+
+    });
+    return false; 
   });
 });
 </script>
