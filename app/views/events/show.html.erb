@@ -1,6 +1,8 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
+<a href="#" class="js-next" data-id="<%=@event.id%>">Next Event...</a>
+
 <% if @event.active  == true %>
   <h5>Event Status- Ongoing</h5>
  <%else%>
@@ -111,5 +113,14 @@
     <li><%= link_to guest.name, guest_path(guest) %></li>
   <%end%>
 </ul>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    alert("working")
+   
+  });
+});
+</script>
 
 
