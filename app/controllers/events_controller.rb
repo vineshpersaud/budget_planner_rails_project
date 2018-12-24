@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show,:edit,:update,:destroy,:deactivate]
-  before_action :set_user, only: [:show,:edit,:update,:destroy,:deactivate]
+  before_action :set_user, only: [:show,:edit,:update,:destroy,:deactivate,:index]
   
   def new
     @event = Event.new
@@ -31,6 +31,14 @@ class EventsController < ApplicationController
       end
     else
       redirect_to root_url
+    end
+  end
+
+  def index
+    current_user = User.find(@user)
+    @events = current_user.events
+    respond_to do |format|
+      format.json{render json: @events, status:200}
     end
   end
 
