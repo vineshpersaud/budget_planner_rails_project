@@ -17,16 +17,20 @@ class EventsController < ApplicationController
   end
 
   def show
-    @guests = @event.guests.ordered_by_name
-    params[:event_id] = @event.id
-    @user = User.find(@event.user_id)
-    @expense = Expense.new
-    @guest = Guest.new
-    @expenses  = @event.expenses.all
-    @difference = @event.budget_difference
-    respond_to do |format|
-      format.html {render :show}
-      format.json {render json: @event, status: 200}
+    if @user == @event.user_id
+      @guests = @event.guests.ordered_by_name
+      params[:event_id] = @event.id
+      @user = User.find(@event.user_id)
+      @expense = Expense.new
+      @guest = Guest.new
+      @expenses  = @event.expenses.all
+      @difference = @event.budget_difference
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @event, status: 200}
+      end
+    else
+      redirect_to root_url
     end
   end
 

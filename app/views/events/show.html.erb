@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td class="eventName"><%= @event.name %></td>
-    <td><%= number_to_currency(@event.budget)%></td>
+    <td class="eventBudget"><%= number_to_currency(@event.budget)%></td>
     <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
 </tr>
 </table>
@@ -121,7 +121,10 @@ $(function () {
     let userId = parseInt($(".js-next").attr("user-id"));
     $.getJSON("/users/" + userId +"/events/" + nextId + ".json", function(data) {
       $(".eventName").text(data["name"]);
-
+      $(".eventBudget").text(data["budget"]);
+      $(".js-next").attr("data-id", data["id"]);
+      debugger
+      
     });
     return false; 
   });
