@@ -1,7 +1,7 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
-<a href="#" class="js-next" data-id="<%=@event.id%>" user-id="<%=@user.id%>">Next Event...</a>
+<a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
 
 <% if @event.active  == true %>
   <h5>Event Status- Ongoing</h5>
@@ -117,14 +117,15 @@
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
-    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    let index = parseInt($(".js-next").attr("data-id")) + 1;
     let userId = parseInt($(".js-next").attr("user-id"));
-    $.getJSON("/users/" + userId +"/events/" + nextId + ".json", function(data) {
-      $(".eventName").text(data["name"]);
-      $(".eventBudget").text(data["budget"]);
-      $(".js-next").attr("data-id", data["id"]);
-      debugger
-      
+    $.getJSON("/users/" + userId +"/events" +".json", function(data) {
+      $(".eventName").text(data[index]["name"]);
+      $(".eventBudget").text(data[index]["budget"]);
+      if (data.length-1 === index){
+        index = 0
+      } 
+      $(".js-next").attr("data-id", index);
     });
     return false; 
   });
