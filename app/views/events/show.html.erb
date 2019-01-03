@@ -129,23 +129,28 @@
 
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
-    let index = parseInt($(".js-next").attr("data-id")) ;
-    let userId = parseInt($(".js-next").attr("user-id"));
-    $.getJSON("/users/" + userId +"/events" +".json", function(data) {
-      $(".eventName").text(data[index]["name"]);
-      $(".eventBudget").text(data[index]["budget"]);
-      $(".eventLink").attr('href','/users/1/events/8');
-      if (data.length-1 === index){
-        index = 0
-      } 
-      index += 1
-      $(".js-next").attr("data-id", index);
+  $(function () {
+    $(".js-next").on("click", function () {
+      let index = parseInt($(".js-next").attr("data-id")) ;
+      let userId = parseInt($(".js-next").attr("user-id"));
+      $.getJSON("/users/" + userId +"/events" +".json", function(data) {
+        $(".eventName").text(data[index]["name"]);
+        $(".eventBudget").text(data[index]["budget"]);
+        $(".eventLink").attr('href',"/users/" + data[index]["user"]["id"] + "/events/" +data[index]["id"]);
+        if (data.length-1 === index){
+          index = 0
+        }
+        else{
+          index+=1
+        } 
+        $(".js-next").attr("data-id", index);
+      });
+      return false; 
     });
-    return false; 
   });
-});
+// does first click automatically to show first event
+  $('.js-next')[0].click()
+
 </script>
 
 
