@@ -20,6 +20,8 @@
   <%end%>
 </div>
 
+
+<div class="data_block"> 
 <!– EVENT INFO ->
 <table align="center">
   <tr>
@@ -94,6 +96,7 @@
     <%= f.submit "Add expense "%>
   <%end%>
   <br>
+</div>
 
   <!– Form for new guest  –>
   <div class="data_block">
@@ -119,7 +122,7 @@
 
  <!–User events using Jquery–>
  <div class="data_block">
-   <h3>All User Events</h3>
+   <h3>All <%=@user.name%>'s Events</h3>
    <div>
       <table>
         <tr>
