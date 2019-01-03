@@ -1,7 +1,7 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
-<a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
+
 
 <% if @event.active  == true %>
   <h5>Event Status- Ongoing</h5>
@@ -9,6 +9,19 @@
  <h5>Event Status- Over</h5>
  <%end%>
  
+ <!–User events–>
+ <h3>All User Events</h3>
+ <div>
+    <table>
+      <tr>
+        <th class="eventName"></th>
+        <th class="eventBudget"></th>
+        <th ><a href="" class="eventLink">Link to Event</a></th>
+      </tr>
+    </table>
+    <a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
+ </div>
+
 
  <!–button to end event –>
  <div>
@@ -27,8 +40,8 @@
     <th></th>
   </tr>
   <tr>
-    <td class="eventName"><%= @event.name %></td>
-    <td class="eventBudget"><%= number_to_currency(@event.budget)%></td>
+    <td><%= @event.name %></td>
+    <td><%= number_to_currency(@event.budget)%></td>
     <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
 </tr>
 </table>
@@ -114,17 +127,20 @@
   <%end%>
 </ul>
 
+
 <script type="text/javascript" charset="utf-8">
 $(function () {
   $(".js-next").on("click", function() {
-    let index = parseInt($(".js-next").attr("data-id")) + 1;
+    let index = parseInt($(".js-next").attr("data-id")) ;
     let userId = parseInt($(".js-next").attr("user-id"));
     $.getJSON("/users/" + userId +"/events" +".json", function(data) {
       $(".eventName").text(data[index]["name"]);
       $(".eventBudget").text(data[index]["budget"]);
+      $(".eventLink").attr('href','/users/1/events/8');
       if (data.length-1 === index){
         index = 0
       } 
+      index += 1
       $(".js-next").attr("data-id", index);
     });
     return false; 
