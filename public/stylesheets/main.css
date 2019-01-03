@@ -5,6 +5,15 @@
   display: center;
   background-color: white;
 }
+.data_block{
+    background-color: #ecf0f1;
+    width: 115%;
+    height: 200%;
+    margin: 0%;
+    padding: 5%;
+    margin-top: 2%;
+    margin-left: -5%;
+}
 
 body{
   background-color: #C0D6EA;

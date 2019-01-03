@@ -2,25 +2,13 @@
 <br>
 
 
-
 <% if @event.active  == true %>
-  <h5>Event Status- Ongoing</h5>
- <%else%>
- <h5>Event Status- Over</h5>
+    <h5>Event Status- Ongoing</h5>
+   <%else%>
+   <h5>Event Status- Over</h5>
  <%end%>
  
- <!–User events–>
- <h3>All User Events</h3>
- <div>
-    <table>
-      <tr>
-        <th class="eventName"></th>
-        <th class="eventBudget"></th>
-        <th ><a href="" class="eventLink">Link to Event</a></th>
-      </tr>
-    </table>
-    <a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
- </div>
+
 
 
  <!–button to end event –>
@@ -108,24 +96,41 @@
   <br>
 
   <!– Form for new guest  –>
-  <div>
-    <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
-      <%= f.collection_select :id, Guest.all, :id, :name, :include_blank => true %>
-      <%f.label :name%>
-      <%= f.text_field :name%>
-      <%= f.hidden_field :event_id, :value => params[:id] %>
-      <%=f.submit "Add New Guest"%>
+  <div class="data_block">
+    <div>
+      <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
+        <%= f.collection_select :id, Guest.all, :id, :name, :include_blank => true %>
+        <%f.label :name%>
+        <%= f.text_field :name%>
+        <%= f.hidden_field :event_id, :value => params[:id] %>
+        <%=f.submit "Add New Guest"%>
+      <%end%>
+    </div>
+
+  <%end%>
+
+  <h2>Guest List</h2>
+  <ul>
+    <%@guests.each do |guest|%>
+      <li><%= link_to guest.name, guest_path(guest) %></li>
     <%end%>
+  </ul>
   </div>
 
-<%end%>
-
-<h2>Guest List</h2>
-<ul>
-  <%@guests.each do |guest|%>
-    <li><%= link_to guest.name, guest_path(guest) %></li>
-  <%end%>
-</ul>
+ <!–User events using Jquery–>
+ <div class="data_block">
+   <h3>All User Events</h3>
+   <div>
+      <table>
+        <tr>
+          <th class="eventName"></th>
+          <th class="eventBudget"></th>
+          <th ><a href="" class="eventLink">Link to Event</a></th>
+        </tr>
+      </table>
+      <a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
+  </div>
+ </div>
 
 
 <script type="text/javascript" charset="utf-8">
