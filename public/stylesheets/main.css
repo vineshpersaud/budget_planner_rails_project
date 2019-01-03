@@ -1,3 +1,11 @@
+#body_main{
+  padding: 10%;
+  margin-left: 10%;
+  width: 80%;
+  display: center;
+  background-color: white;
+}
+
 body{
   background-color: #C0D6EA;
 }
