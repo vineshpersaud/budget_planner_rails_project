@@ -1,16 +1,13 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
-
+<!– EVENT Active status ->
 <% if @event.active  == true %>
     <h5>Event Status- Ongoing</h5>
    <%else%>
    <h5>Event Status- Over</h5>
  <%end%>
  
-
-
-
  <!–button to end event –>
  <div>
   <%if @event.active == false %>
@@ -20,24 +17,27 @@
   <%end%>
 </div>
 
-
-<div class="data_block"> 
 <!– EVENT INFO ->
-<table align="center">
-  <tr>
-    <th>Event name</th>
-    <th>Budget</th>
-    <th></th>
+<div class="data_block", id="event_name"> 
+  <table align="center">
+    <tr>
+      <th>Event name</th>
+      <th>Budget</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><h4><%= @event.name %></h4></td>
+      <td><h4><%= number_to_currency(@event.budget)%></h4></td>
+      <td><h4><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></h4></td>
   </tr>
-  <tr>
-    <td><%= @event.name %></td>
-    <td><%= number_to_currency(@event.budget)%></td>
-    <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
-</tr>
 </table>
 
 <br>
+</div>
 
+
+
+<div class="data_block">
 
 <!– List of EXPENSES  –>
 <table align="center">

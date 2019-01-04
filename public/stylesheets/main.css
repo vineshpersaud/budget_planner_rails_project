@@ -14,6 +14,10 @@
     margin-top: 2%;
     margin-left: -5%;
 }
+#event_name{
+  background-color: #1abc9c;
+  padding:0%;
+}
 
 body{
   background-color: #C0D6EA;
