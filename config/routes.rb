@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#create'
 
   post "users/:id/events/:id", to: "events#deactivate"
-  
+  post "users/:id/events/:id/guests/new", to: "guests#create"
+
   get 'report', to: "users#report"
    resources :guests , only: [ :show,:index]
 

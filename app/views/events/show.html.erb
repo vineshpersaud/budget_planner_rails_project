@@ -7,7 +7,7 @@
    <%else%>
    <h5>Event Status- Over</h5>
  <%end%>
- 
+
  <!–button to end event –>
  <div>
   <%if @event.active == false %>
@@ -18,7 +18,7 @@
 </div>
 
 <!– EVENT INFO ->
-<div class="data_block", id="event_name"> 
+<div class="data_block", id="event_name">
   <table align="center">
     <tr>
       <th>Event name</th>
@@ -40,7 +40,7 @@
 <div class="data_block">
 
 <!– List of EXPENSES  –>
-<table align="center">
+<table align="center", id="expense_table">
     <tr>
       <th>Name</th>
       <th>Cost</th>
@@ -48,9 +48,9 @@
       <th>Total</th>
     </tr>
   <% @expenses.each do |expense|%>
-    <tr>
-      <td><%= expense.name %></td> 
-      <td><%= number_to_currency(expense.cost) %></td> 
+    <tr >
+      <td><%= expense.name %></td>
+      <td><%= number_to_currency(expense.cost) %></td>
       <td><%= expense.quantity %></td>
       <td><%= number_to_currency(expense.total) %></td>
       <td><%= link_to "Edit", edit_user_event_expense_path(expense.event.user_id,expense.event_id,expense)%></td>
@@ -61,7 +61,7 @@
 
 <br><br>
 
-<h3>Budget Balance <%= @difference%></h3> <br><br>  
+<h3>Budget Balance <%= @difference%></h3> <br><br>
 
   <% if flash[:alert] %>
     <ul>
@@ -101,7 +101,7 @@
   <!– Form for new guest  –>
   <div class="data_block">
     <div>
-      <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
+      <%= form_for @guest, url:  new_user_event_guest_path(@user,@event,@guest) do |f|%>
         <%= f.collection_select :id, Guest.all, :id, :name, :include_blank => true %>
         <%f.label :name%>
         <%= f.text_field :name%>
@@ -113,11 +113,11 @@
   <%end%>
 
   <h2>Guest List</h2>
-  <ul>
-    <%@guests.each do |guest|%>
-      <li><%= link_to guest.name, guest_path(guest) %></li>
-    <%end%>
-  </ul>
+    <ul>
+      <%@guests.each do |guest|%>
+        <li><%= link_to guest.name, guest_path(guest) %></li>
+      <%end%>
+    </ul>
   </div>
 
  <!–User events using Jquery–>
@@ -138,6 +138,31 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
+    //hijacks new expense to show new expense via AJAX
+    $("#new_guest").on("submit",function(e){
+      url = this.action
+      data = {
+        'authenticity_token': $("input[name='authenticity_token']").val(),
+        'guest':{
+          'name': $("#guest_name").val(),
+          'event_id': $('#guest_event_id').val()
+        }
+      }
+      debugger
+
+      $.ajax({
+        type: 'post',
+        url: url,
+        data: data,
+        success: function(response){
+          debugger
+        }
+      });
+
+      e.preventDefault();
+    })
+
+    //Shows all currents users events via Jquery
     $(".js-next").on("click", function () {
       let index = parseInt($(".js-next").attr("data-id")) ;
       let userId = parseInt($(".js-next").attr("user-id"));
@@ -150,15 +175,13 @@
         }
         else{
           index+=1
-        } 
+        }
         $(".js-next").attr("data-id", index);
       });
-      return false; 
+      return false;
     });
   });
 // does first click automatically to show first event
   $('.js-next')[0].click()
 
 </script>
-
-
