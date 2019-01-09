@@ -140,7 +140,7 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     //hijacks new guest to show new guest via AJAX
-    let id = '<%= Guest.all.last.id + 1 %>';;
+    let id 
     $("#new_guest").on("submit",function(e){
        url = this.action
        data = {
@@ -155,8 +155,13 @@
             id = $("#guest_name option:selected" ).val();
         } else {
             data['guest']['name'] = $("#new_guest_name").val()
+            if (id === undefined){
+              id =<%= Guest.all.last.id + 1 %>;
+            }else{
+              id += 1
+            }
+            
         }
-        debugger
         
 
       $.ajax({
