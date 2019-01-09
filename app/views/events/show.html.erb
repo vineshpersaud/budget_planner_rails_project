@@ -103,9 +103,9 @@
     <div>
       <%= form_for @guest, url:  new_user_event_guest_path(@user,@event) do |f|%>
         <%= f.label :Guest %> 
-        <%= f.collection_select :name, Guest.all, :id, :name %>
+        <%= f.collection_select :name, Guest.all, :id, :name ,:include_blank => true%>
         <%f.label :name%>
-        <%= f.text_field :name%>
+        <%= f.text_field :name,  id: 'new_guest_name'%>
         <%= f.hidden_field :event_id, :value => params[:id] %>
         <%=f.submit "Add New Guest"%>
       <%end%>
@@ -139,23 +139,26 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
-    //hijacks new expense to show new expense via AJAX
+    //hijacks new guest to show new guest via AJAX
     $("#new_guest").on("submit",function(e){
-      url = this.action
-      data = {
+       url = this.action
+       data = {
         'authenticity_token': $("input[name='authenticity_token']").val(),
         'guest':{
-          'name': $("#guest_name option:selected").text(),
-          'event_id': $('#guest_event_id').val(),
-          'id': $( "#guest_name option:selected" ).val()
-
+          'event_id': $('#guest_event_id').val()  
         }
       }
+        if($("#guest_name option:selected").val() != ""){
+            data['guest']['name'] = $("#guest_name option:selected").text()
+            data['guest']['id'] = $( "#guest_name option:selected" ).val()
+        } else {
+            data['guest']['name'] = $("#new_guest_name").val()
+        }
       $.ajax({
         type: 'post',
         url: url,
         data: data,
-        success: function(response){
+        success: function(){
           $('#guest_list').append('<a href='+'/guests/'+ data["guest"]["id"]+'>'+data["guest"]["name"]+'</a>' )
         }
       });
