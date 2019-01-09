@@ -156,7 +156,7 @@
         url: url,
         data: data,
         success: function(response){
-          $('#guest_list').append(data["guest"]["name"])
+          $('#guest_list').append('<a href='+'/guests/'+ data["guest"]["id"]+'>'+data["guest"]["name"]+'</a>' )
         }
       });
 
