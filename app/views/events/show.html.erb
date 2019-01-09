@@ -114,7 +114,7 @@
   <%end%>
 
   <h2>Guest List</h2>
-    <ul>
+    <ul id="guest_list">
       <%@guests.each do |guest|%>
         <li><%= link_to guest.name, guest_path(guest) %></li>
       <%end%>
@@ -145,18 +145,18 @@
       data = {
         'authenticity_token': $("input[name='authenticity_token']").val(),
         'guest':{
-          'name': $("#guest_name").val(),
+          'name': $("#guest_name option:selected").text(),
           'event_id': $('#guest_event_id').val(),
-          'id': $('#guest_event_id').val()
+          'id': $( "#guest_name option:selected" ).val()
+
         }
       }
-
       $.ajax({
         type: 'post',
         url: url,
         data: data,
         success: function(response){
-          debugger
+          $('#guest_list').append(data["guest"]["name"])
         }
       });
 
