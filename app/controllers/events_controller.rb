@@ -19,7 +19,6 @@ class EventsController < ApplicationController
   def show
     if @user == @event.user_id
       @guests = @event.guests.ordered_by_name
-      params[:event_id] = @event.id
       @user = User.find(@event.user_id)
       @expense = Expense.new
       @guest = Guest.new

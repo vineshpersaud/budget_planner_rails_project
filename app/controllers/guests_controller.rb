@@ -1,11 +1,11 @@
 class GuestsController < ApplicationController
   
   def new
-    @guest.new
+    @guest = Guest.new
   end
 
   def create
-    @guest = Guest.find(params[:guest][:id]) if params[:guest][:id] != ""
+    @guest = Guest.find(params[:guest][:name]) if params[:guest][:name] != ""
     if @guest == nil ||  @guest.name == ""
       @guest = Guest.new(guest_params)
       @guest.save
@@ -13,6 +13,7 @@ class GuestsController < ApplicationController
     #render:text=>@guest.inspect
     @user_id = session[:user_id]
     @event_id = params[:guest][:event_id]
+
     Invitation.new(event_id: @event_id , guest_id: @guest.id).save
     if @guest[:name] == ""
       redirect_to user_event_path(@user_id,@event_id),:flash => { :message => "Please enter new name or pick from list" } 
@@ -37,7 +38,7 @@ class GuestsController < ApplicationController
   private
 
   def guest_params
-    params.require(:guest).permit(:name)
+    params.require(:guest).permit(:name,:id)
   end
 
 end

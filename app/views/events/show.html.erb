@@ -101,8 +101,9 @@
   <!– Form for new guest  –>
   <div class="data_block">
     <div>
-      <%= form_for @guest, url:  new_user_event_guest_path(@user,@event,@guest) do |f|%>
-        <%= f.collection_select :id, Guest.all, :id, :name, :include_blank => true %>
+      <%= form_for @guest, url:  new_user_event_guest_path(@user,@event) do |f|%>
+        <%= f.label :Guest %> 
+        <%= f.collection_select :name, Guest.all, :id, :name %>
         <%f.label :name%>
         <%= f.text_field :name%>
         <%= f.hidden_field :event_id, :value => params[:id] %>
@@ -145,10 +146,10 @@
         'authenticity_token': $("input[name='authenticity_token']").val(),
         'guest':{
           'name': $("#guest_name").val(),
-          'event_id': $('#guest_event_id').val()
+          'event_id': $('#guest_event_id').val(),
+          'id': $('#guest_event_id').val()
         }
       }
-      debugger
 
       $.ajax({
         type: 'post',
