@@ -154,16 +154,18 @@
         } else {
             data['guest']['name'] = $("#new_guest_name").val()
         }
+
       $.ajax({
         type: 'post',
         url: url,
         data: data,
         success: function(){
-          $('#guest_list').append('<a href='+'/guests/'+ data["guest"]["id"]+'>'+data["guest"]["name"]+'</a>' )
+          $('#guest_list').append('<li><a href='+'/guests/'+ data["guest"]["id"]+'>'+data["guest"]["name"]+'</a></li>' )
         }
       });
 
       e.preventDefault();
+      return false;
     })
 
     //Shows all currents users events via Jquery
