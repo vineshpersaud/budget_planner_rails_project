@@ -140,6 +140,7 @@
 <script type="text/javascript" charset="utf-8">
   $(function () {
     //hijacks new guest to show new guest via AJAX
+    let id = '<%= Guest.all.last.id + 1 %>';;
     $("#new_guest").on("submit",function(e){
        url = this.action
        data = {
@@ -151,16 +152,19 @@
         if($("#guest_name option:selected").val() != ""){
             data['guest']['name'] = $("#guest_name option:selected").text()
             data['guest']['id'] = $( "#guest_name option:selected" ).val()
+            id = $("#guest_name option:selected" ).val();
         } else {
             data['guest']['name'] = $("#new_guest_name").val()
         }
+        debugger
+        
 
       $.ajax({
         type: 'post',
         url: url,
         data: data,
         success: function(){
-          $('#guest_list').append('<li><a href='+'/guests/'+ data["guest"]["id"]+'>'+data["guest"]["name"]+'</a></li>' )
+          $('#guest_list').append('<li><a href='+'/guests/'+ id +'>'+data["guest"]["name"]+'</a></li>' )
         }
       });
 
