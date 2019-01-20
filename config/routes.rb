@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
   root 'users#signup'
   get 'users/signup'
   get 'users/shoppinglist'
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "sessions/create", to: "sessions#create"
   get 'login', to: "sessions#new"
   delete "/signout", to: "sessions#destroy"
-  
+
   get 'users/home'
 
 
@@ -27,19 +27,19 @@ Rails.application.routes.draw do
   get 'report', to: "users#report"
    resources :guests , only: [ :show,:index]
 
-  
 
 
-  
+
+
   resources :users do
     resources :events do
-      resources :guests do 
+      resources :guests do
         resources :invitations
       end
       resources :expenses , only: [ :edit, :update, :destroy,:create]
-      
+
     end
   end
 
-  
+
 end

@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         redirect_to users_home_path
-      else 
+      else
         # use render to keep @user data
         render :signup,:flash => { :alert => @user.errors.full_messages }
       end
@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @events = @user.events.all
     @ended_events = Event.over.map {|event|  event if event.user_id == @user.id && event}.compact
+  end
+
+  def homepage
+    @user = User.find(session[:user_id])
   end
 
   def shoppinglist

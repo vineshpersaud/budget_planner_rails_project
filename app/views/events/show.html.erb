@@ -1,6 +1,9 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
+<a href="/users/1/events.json" id="allEvents">Show Events</a>
+<br><br>
+
 <!– EVENT Active status ->
 <% if @event.active  == true %>
     <h5>Event Status- Ongoing</h5>
@@ -102,12 +105,12 @@
   <div class="data_block">
     <div>
       <%= form_for @guest, url:  new_user_event_guest_path(@user,@event) do |f|%>
-        <%= f.label :Guest %> 
+        <%= f.label :Guest %>
         <%= f.collection_select :name, Guest.all, :id, :name ,:include_blank => true%>
         <%f.label :name%>
         <%= f.text_field :name,  id: 'new_guest_name'%>
         <%= f.hidden_field :event_id, :value => params[:id] %>
-        <%=f.submit "Add New Guest"%>
+        <%=f.submit "Add New Guest" %>
       <%end%>
     </div>
 
@@ -135,68 +138,3 @@
       <a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
   </div>
  </div>
-
-
-<script type="text/javascript" charset="utf-8">
-  $(function () {
-    //hijacks new guest to show new guest via AJAX
-    let id 
-    $("#new_guest").on("submit",function(e){
-       url = this.action
-       data = {
-        'authenticity_token': $("input[name='authenticity_token']").val(),
-        'guest':{
-          'event_id': $('#guest_event_id').val()  
-        }
-      }
-        if($("#guest_name option:selected").val() != ""){
-            data['guest']['name'] = $("#guest_name option:selected").text()
-            data['guest']['id'] = $( "#guest_name option:selected" ).val()
-            id = $("#guest_name option:selected" ).val();
-        } else {
-            data['guest']['name'] = $("#new_guest_name").val()
-            if (id === undefined){
-              id =<%= Guest.all.last.id + 1 %>;
-            }else{
-              id += 1
-            }
-            
-        }
-        
-
-      $.ajax({
-        type: 'post',
-        url: url,
-        data: data,
-        success: function(){
-          $('#guest_list').append('<li><a href='+'/guests/'+ id +'>'+data["guest"]["name"]+'</a></li>' )
-        }
-      });
-
-      e.preventDefault();
-      return false;
-    })
-
-    //Shows all currents users events via Jquery
-    $(".js-next").on("click", function () {
-      let index = parseInt($(".js-next").attr("data-id")) ;
-      let userId = parseInt($(".js-next").attr("user-id"));
-      $.getJSON("/users/" + userId +"/events" +".json", function(data) {
-        $(".eventName").text(data[index]["name"]);
-        $(".eventBudget").text(data[index]["budget"]);
-        $(".eventLink").attr('href',"/users/" + data[index]["user"]["id"] + "/events/" +data[index]["id"]);
-        if (data.length-1 === index){
-          index = 0
-        }
-        else{
-          index+=1
-        }
-        $(".js-next").attr("data-id", index);
-      });
-      return false;
-    });
-  });
-// does first click automatically to show first event
-  $('.js-next')[0].click()
-
-</script>
