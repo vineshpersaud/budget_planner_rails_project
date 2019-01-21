@@ -7,7 +7,17 @@ $( document ).on('turbolinks:load', function() {
        url: url,
        datatype: "json",
        success: function (response) {
-          debugger
+
+         let expenses = response["expenses"].map(expense =>
+           "<tr> <td>"
+           + expense["name"] +
+           "</td> <td>"
+           + expense["cost"] +
+           "</td><td>"
+           + expense["quantity"] +
+           "</td>  <tr>"
+         )
+          $("#briefedEvent").append(expenses.join(''))
        }
      })
    })
