@@ -1,5 +1,5 @@
 $( document ).on('turbolinks:load', function() {
-   $("#eventBrief").on("click", function(e) {
+   $(".eventBrief").on("click", function(e) {
      e.preventDefault();
      url = this.href
      $.ajax({
@@ -16,7 +16,6 @@ $( document ).on('turbolinks:load', function() {
            + expense["quantity"] +
            "</td>  <tr>"
          )
-
           $("#briefedEvent"+response['id']).append(expenses.join(''))
        }
      })
