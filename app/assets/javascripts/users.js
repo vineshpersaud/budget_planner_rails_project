@@ -1,6 +1,15 @@
 $( document ).on('turbolinks:load', function() {
    $("#eventBrief").on("click", function(e) {
      e.preventDefault();
-     alert("click hijacked")
+     url = this.href
+     $.ajax({
+       method: "GET",
+       url: url,
+       datatype: "json",
+       success: function (response) {
+          debugger
+       }
+     })
    })
+
   });
