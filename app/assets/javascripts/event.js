@@ -21,9 +21,9 @@ $( document ).on('turbolinks:load', function() {
             "</td> <td>" +
             event["budget"]+
             "</td>  <td>" +
-            "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">Link</a>" +
+            "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">More Info</a>" +
             "</td></tr>")
-          $("#showEvents").append("<table>" + events.join(' ') + "</table>")
+          $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + events.join(' ') + "</table>")
         }
       })
     })
