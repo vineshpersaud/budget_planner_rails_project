@@ -1,7 +1,7 @@
 
   $(function () {
     $("#allEvents").on("click",function(e){
-      e.preventDefault()
+
 
       url = this.href
 
@@ -11,10 +11,21 @@
         url: url,
         datatype: "json",
         success: function (response) {
-          let events = response.map(event=> "<tr>"+ "<td>" + event["name"] +"</td>" +"</tr>")
+          $("#showEvents").empty()
+
+            let events = response.map(event=>
+            "<tr> <td>"
+            + event["name"] +
+            "</td> <td>" +
+            event["budget"]+
+            "</td>  <td>" +
+            "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">Link</a>" +
+            "</td></tr>")
           $("#showEvents").append("<table>" + events.join(' ') + "</table>")
-          debugger
         }
       })
+        e.preventDefault()
     })
+
+
   });
