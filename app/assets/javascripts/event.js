@@ -11,6 +11,8 @@
         url: url,
         datatype: "json",
         success: function (response) {
+          let events = response.map(event=> "<tr>"+ "<td>" + event["name"] +"</td>" +"</tr>")
+          $("#showEvents").append("<table>" + events.join(' ') + "</table>")
           debugger
         }
       })
