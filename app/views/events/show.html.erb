@@ -1,8 +1,9 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
-<a href="/users/1/events.json" id="allEvents" type="submit">Show Events</a>
-<div id="showEvents">
+ <!–User events using Jquery–>
+<div id="showEvents" class="data_block">
+  <a href="/users/1/events.json" id="allEvents" type="submit">Show Events</a>
   <table>
 
   </table>
@@ -128,18 +129,3 @@
       <%end%>
     </ul>
   </div>
-
- <!–User events using Jquery–>
- <div class="data_block">
-   <h3>All <%=@user.name%>'s Events</h3>
-   <div>
-      <table>
-        <tr>
-          <th class="eventName"></th>
-          <th class="eventBudget"></th>
-          <th ><a href="" class="eventLink">Link to Event</a></th>
-        </tr>
-      </table>
-      <a href="#" class="js-next" data-id= 0 user-id="<%=@user.id%>">Next Event...</a>
-  </div>
- </div>
