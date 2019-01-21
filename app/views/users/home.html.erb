@@ -4,9 +4,7 @@ Welcome <%=  @user.name %>
 
 
 
-<div id="briefedEvent">
 
-</div>
 
 <table>
   <tr>
@@ -20,6 +18,13 @@ Welcome <%=  @user.name %>
         <td><%= event.budget%></td>
         <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
         <td><a id="eventBrief" href="/users/<%=@user.id%>/events/<%=event.id%>.json">Event Brief</a>
+      </tr>
+      <tr>
+        <td>
+          <div id="briefedEvent<%=event.id%>">
+
+          </div>
+        </td>
       </tr>
     <%end%>
    <%end%>

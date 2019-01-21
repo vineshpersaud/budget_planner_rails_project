@@ -7,7 +7,6 @@ $( document ).on('turbolinks:load', function() {
        url: url,
        datatype: "json",
        success: function (response) {
-
          let expenses = response["expenses"].map(expense =>
            "<tr> <td>"
            + expense["name"] +
@@ -17,7 +16,8 @@ $( document ).on('turbolinks:load', function() {
            + expense["quantity"] +
            "</td>  <tr>"
          )
-          $("#briefedEvent").append(expenses.join(''))
+
+          $("#briefedEvent"+response['id']).append(expenses.join(''))
        }
      })
    })
