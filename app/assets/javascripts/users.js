@@ -16,7 +16,10 @@ $( document ).on('turbolinks:load', function() {
            + expense["quantity"] +
            "</td>  <tr>"
          )
-          $("#briefedEvent"+response['id']).append(expenses.join(''))
+          $event =$("#briefedEvent"+response['id'])
+          $event.empty()
+          $event.append( "<tr><th>Name</th><th>Cost</th><th>Quantity</th></tr>"+ expenses.join(''))
+          $event.attr('class','data_block')
        }
      })
    })
