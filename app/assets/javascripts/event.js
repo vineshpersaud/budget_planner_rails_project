@@ -14,7 +14,7 @@ $( document ).on('turbolinks:load', function() {
         url: url,
         datatype: "json",
         success: function (response) {
-          $("#showEvents").empty()
+          $("#showEvents table").empty()
             let events = response.map(event=>
             "<tr> <td>"
             + event["name"] +
@@ -24,7 +24,20 @@ $( document ).on('turbolinks:load', function() {
             "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">More Info</a>" +
             "</td></tr>")
           $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + events.join(' ') + "</table>")
+          //$("#allEvents").attr('id','hideEvents')
+          //$("#hideEvents").text("Hide Events")
         }
       })
     })
+
+    // $("#hideEvents").on("click",function(e){
+    //
+    //     alert("hello")
+    //      $("#showEvents table").empty()
+    //      $("#hideEvents").text("Show Events")
+    //      $("#hideEvents").attr('id','allEvents')
+    //      e.preventDefault();
+    // });
+
+
   });

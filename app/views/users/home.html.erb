@@ -1,7 +1,7 @@
 Welcome <%=  @user.name %>
 
 <h3><%= link_to "Click to create New Event!", new_user_event_url(@user) %></h3>
-  
+
 
 
 
@@ -14,12 +14,13 @@ Welcome <%=  @user.name %>
   <% @events.each do |event| %>
     <% if event.active %>
       <tr>
-        <td><%= link_to event.name, user_event_path(@user,event)%></td> 
-        <td><%= event.budget%></td> 
+        <td><%= link_to event.name, user_event_path(@user,event)%></td>
+        <td><%= event.budget%></td>
         <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
+        <td><a id="eventBrief" href="/users/<%=@user.id%>/events/<%=event.id%>.json">Event Brief</a>
       </tr>
     <%end%>
-   <%end%> 
+   <%end%>
 </table>
 
 <h3><%= link_to "Shopping List", users_shoppinglist_path %></h3>
@@ -35,9 +36,11 @@ Welcome <%=  @user.name %>
     </tr>
     <% @ended_events.each do |event|%>
         <tr>
-          <td><%= link_to event.name, user_event_path(@user,event)%></td> 
-          <td><%= event.budget%></td> 
+          <td><%= link_to event.name, user_event_path(@user,event)%></td>
+          <td><%= event.budget%></td>
           <td><%= link_to "Delete" , user_event_path(@user, event), :method => :delete%></td>
+          <td><a href="">Event Brief</a>
+</td>
         </tr>
     <%end%>
   </table>
