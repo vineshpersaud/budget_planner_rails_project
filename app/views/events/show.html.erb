@@ -102,7 +102,7 @@
     <%=f.label :quantity%>
     <%= f.number_field :quantity, value: 1%>
     <%= f.hidden_field :event_id, :value => params[:id] %>
-    <%= f.submit "Add expense "%>
+    <%= f.submit "Add expense", data: { disable_with: false } %>
   <%end%>
   <br>
 </div>

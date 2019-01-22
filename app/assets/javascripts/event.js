@@ -36,8 +36,8 @@ $( document ).on('turbolinks:load', function() {
     //      e.preventDefault();
     // });
 
-    $("#new_expense").on("submit",function(e){
-       e.preventDefault();
+    $("#new_expense").on('submit',function(e){
+
         url = this.action
         data = $(this).serialize()
         $.ajax({
@@ -51,6 +51,8 @@ $( document ).on('turbolinks:load', function() {
             +"</td></tr>"  )
           }
         })
+
+         e.preventDefault();
     })
 
   });
