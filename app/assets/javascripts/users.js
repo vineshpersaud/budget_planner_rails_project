@@ -16,10 +16,18 @@ $( document ).on('turbolinks:load', function() {
            + expense["quantity"] +
            "</td>  <tr>"
          )
+         let guests = "<h3>Guest List</h3><p><ul>" + response["guests"].map(guest =>"<li>"+guest["name"]+"</li>").join('') + "</ul></p>"
+
           $event =$("#briefedEvent"+response['id'])
+          $guest =$("#briefedGuest"+response['id'])
           $event.empty()
-          $event.append( "<tr><th>Name</th><th>Cost</th><th>Quantity</th></tr>"+ expenses.join(''))
+          $guest.empty()
+          $guest.append(guests)
+          $guest.attr('class','data_block')
+          $event.append( "<table><tr><th>Name</th><th>Cost</th><th>Quantity</th></tr>"+ expenses.join('') +"</table>")
           $event.attr('class','data_block')
+          debugger
+
        }
      })
    })
