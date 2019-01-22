@@ -22,7 +22,8 @@ class ExpensesController < ApplicationController
       @event =  Event.find(params[:expense][:event_id])
       @expense = @event.expenses.build(expense_params)
       @expense.save
-      redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+      #redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+      render json: @expense
     else
       redirect_to root_url
     end

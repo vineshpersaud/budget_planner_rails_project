@@ -45,7 +45,7 @@ $( document ).on('turbolinks:load', function() {
           url: url,
           data: data,
           success: function(response) {
-            debugger
+            $("#expense_table").append("<tr><td>" +response["name"]+ "</td><td>" +response["cost"]+ "</td><td>" +response["quantity"] +"</td></tr>"  )
           }
         })
     })
