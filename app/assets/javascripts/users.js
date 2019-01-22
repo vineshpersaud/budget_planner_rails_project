@@ -20,13 +20,15 @@ $( document ).on('turbolinks:load', function() {
 
           $event =$("#briefedEvent"+response['id'])
           $guest =$("#briefedGuest"+response['id'])
+
           $event.empty()
           $guest.empty()
+
           $guest.append(guests)
           $guest.attr('class','data_block')
           $event.append( "<table><tr><th>Name</th><th>Cost</th><th>Quantity</th></tr>"+ expenses.join('') +"</table>")
           $event.attr('class','data_block')
-          debugger
+          
 
        }
      })

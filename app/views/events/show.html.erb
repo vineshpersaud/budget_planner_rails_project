@@ -112,7 +112,7 @@
     <div>
       <%= form_for @guest, url:  new_user_event_guest_path(@user,@event) do |f|%>
         <%= f.label :Guest %>
-        <%= f.collection_select :name, Guest.all, :id, :name ,:include_blank => true%>
+        <%= f.collection_select :id, Guest.all, :id, :name ,:include_blank => true%>
         <%f.label :name%>
         <%= f.text_field :name,  id: 'new_guest_name'%>
         <%= f.hidden_field :event_id, :value => params[:id] %>
