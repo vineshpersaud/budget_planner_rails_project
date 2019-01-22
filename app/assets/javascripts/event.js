@@ -1,9 +1,6 @@
 //https://stackoverflow.com/questions/36110789/rails-5-how-to-use-document-ready-with-turbo-links
 // sloves turbolinks ready error
 $( document ).on('turbolinks:load', function() {
-  if (window.jQuery){
-    console.log("hello")
-  }
 
     $("#allEvents").on("click",function(e){
        e.preventDefault();
@@ -39,5 +36,9 @@ $( document ).on('turbolinks:load', function() {
     //      e.preventDefault();
     // });
 
+    $("#new_expense").on("submit",function(e){
+       e.preventDefault();
+        alert("hijacked new expense")
+    })
 
   });
