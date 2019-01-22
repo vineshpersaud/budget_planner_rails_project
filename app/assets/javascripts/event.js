@@ -38,7 +38,16 @@ $( document ).on('turbolinks:load', function() {
 
     $("#new_expense").on("submit",function(e){
        e.preventDefault();
-        alert("hijacked new expense")
+        url = this.action
+        data = $(this).serialize()
+        $.ajax({
+          type:"POST",
+          url: url,
+          data: data,
+          success: function(response) {
+            debugger
+          }
+        })
     })
 
   });
