@@ -36,6 +36,8 @@ $( document ).on('turbolinks:load', function() {
     //      e.preventDefault();
     // });
 
+
+
     $("#new_expense").on('submit',function(e){
 
         url = this.action
@@ -45,6 +47,8 @@ $( document ).on('turbolinks:load', function() {
           url: url,
           data: data,
           success: function(response) {
+            let expense = new Expense(response)
+            debugger
             $("#expense_table").append("<tr><td>" +response["name"]+ "</td><td>" +  "$" + parseInt(response["cost"]).toFixed(2) + "</td><td>" +response["quantity"] +
             "</td><td>$"+(parseInt(response["cost"]) * parseInt(response["quantity"])).toFixed(2) + "</td><td>" +
             "<a href=\"/users/" + response["event"]["user_id"]+ "/events/"+ response["event"]["id"]+"/expenses/"+ response["id"]+"/edit\">Edit</a>"
@@ -58,12 +62,15 @@ $( document ).on('turbolinks:load', function() {
     })
 
     // Expense constructor
-    function Expense(response){
-      this.name = response["name"],
-      this.quantity = response["quantity"],
-      this.cost = response["cost"],
-      this.user_id = response["event"]["user_id"],
-      this.event_id = response["event"]["id"]
+    class Expense{
+      constructor(obj) {
+        this.name = obj.name
+        this.quantity = obj.quantity,
+        this.cost = obj.cost,
+        this.user_id = obj.event.user_id,
+        this.event_id = obj.event.id
+      }
     }
+
 
   });
