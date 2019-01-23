@@ -57,4 +57,13 @@ $( document ).on('turbolinks:load', function() {
          e.preventDefault();
     })
 
+    // Expense constructor
+    function Expense(response){
+      this.name = response["name"],
+      this.quantity = response["quantity"],
+      this.cost = response["cost"],
+      this.user_id = response["event"]["user_id"],
+      this.event_id = response["event"]["id"]
+    }
+
   });
