@@ -48,8 +48,7 @@ $( document ).on('turbolinks:load', function() {
           data: data,
           success: function(response) {
             let expense = new Expense(response)
-             $("#expense_table").append(expense.formatEventData())
-            
+             $("#expense_table").append(expense.formatExpenseData())
             // $("#expense_table").append("<tr><td>" +response["name"]+ "</td><td>" +  "$" + parseInt(response["cost"]).toFixed(2) + "</td><td>" +response["quantity"] +
             // "</td><td>$"+(parseInt(response["cost"]) * parseInt(response["quantity"])).toFixed(2) + "</td><td>" +
             // "<a href=\"/users/" + response["event"]["user_id"]+ "/events/"+ response["event"]["id"]+"/expenses/"+ response["id"]+"/edit\">Edit</a>"
@@ -62,6 +61,12 @@ $( document ).on('turbolinks:load', function() {
          e.preventDefault();
     })
 
+    function turnToDollar(amount){
+      return(
+        parseInt(amount).toFixed(2)
+      )
+    }
+
     // Expense constructor
     class Expense{
       constructor(obj) {
@@ -72,13 +77,13 @@ $( document ).on('turbolinks:load', function() {
         this.user_id = obj.event.user_id,
         this.event_id = obj.event.id
       }
-      formatEventData(){
+      formatExpenseData(){
         return(`
           <tr>
             <td> ${this.name} </td>
-            <td> ${this.cost}</td>
+            <td>$${turnToDollar(this.cost)}</td>
             <td> ${this.quantity} </td>
-            <td> ${this.cost * this.quantity }</td>
+            <td>$${turnToDollar(this.cost * this.quantity)}</td>
             <td><a href="/users/${this.user_id}/events/${this.event_id}/expenses/${this.id}/edit\">Edit</a></td>
             <td><a  data-method="delete", href="/users/${this.user_id}/events/${this.event_id}/expenses/${this.id}">Delete</a></td>
           </tr>
