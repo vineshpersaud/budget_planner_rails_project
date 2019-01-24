@@ -4,7 +4,6 @@ $( document ).on('turbolinks:load', function() {
 
     $("#allEvents").on("click",function(e){
        e.preventDefault();
-
       url = this.href
       $.ajax({
         method: "GET",
@@ -12,19 +11,10 @@ $( document ).on('turbolinks:load', function() {
         datatype: "json",
         success: function (response) {
           let allEvents = response.map(event=> new Event(event))
-          let formattedEvents = allEvents.map(event=> event.formatEventData())
-          // debugger
-          // $("#showEvents table").empty()
-          //   let events = response.map(event=>
-          //   "<tr> <td>"
-          //   + event["name"] +
-          //   "</td> <td>" +
-          //   event["budget"]+
-          //   "</td>  <td>" +
-          //   "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">More Info</a>" +
-          //   "</td></tr>")
-          // $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + events.join(' ') + "</table>")
-           $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
+          let formattedEvents = allEvents.map(event=> event.formatEventData()).join('')
+          
+          $("#showEvents table").empty()
+          $("#showEvents").append("<table><tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
         }
       })
     })
@@ -36,11 +26,6 @@ $( document ).on('turbolinks:load', function() {
         this.id = obj.id,
         this.user_id = obj.user.id
       }
-
-
-
-
-
       //Expense Prototype for format info to add to DOM
       formatEventData(){
         return(`
@@ -56,8 +41,9 @@ $( document ).on('turbolinks:load', function() {
 
 
 
-    $("#new_expense").on('submit',function(e){
 
+
+    $("#new_expense").on('submit',function(e){
         url = this.action
         data = $(this).serialize()
         $.ajax({
@@ -67,10 +53,8 @@ $( document ).on('turbolinks:load', function() {
           success: function(response) {
             let expense = new Expense(response)
              $("#expense_table").append(expense.formatExpenseData())
-
           }
         })
-
          e.preventDefault();
     })
 
