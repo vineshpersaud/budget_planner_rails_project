@@ -11,30 +11,48 @@ $( document ).on('turbolinks:load', function() {
         url: url,
         datatype: "json",
         success: function (response) {
-          $("#showEvents table").empty()
-            let events = response.map(event=>
-            "<tr> <td>"
-            + event["name"] +
-            "</td> <td>" +
-            event["budget"]+
-            "</td>  <td>" +
-            "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">More Info</a>" +
-            "</td></tr>")
-          $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + events.join(' ') + "</table>")
-          //$("#allEvents").attr('id','hideEvents')
-          //$("#hideEvents").text("Hide Events")
+          let allEvents = response.map(event=> new Event(event))
+          let formattedEvents = allEvents.map(event=> event.formatEventData())
+          // debugger
+          // $("#showEvents table").empty()
+          //   let events = response.map(event=>
+          //   "<tr> <td>"
+          //   + event["name"] +
+          //   "</td> <td>" +
+          //   event["budget"]+
+          //   "</td>  <td>" +
+          //   "<a href=\"/users/"+ event["user"]["id"] +"/events/"+ event["id"]+ "\">More Info</a>" +
+          //   "</td></tr>")
+          // $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + events.join(' ') + "</table>")
+           $("#showEvents").append("<table>" + "<tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
         }
       })
     })
 
-    // $("#hideEvents").on("click",function(e){
-    //
-    //     alert("hello")
-    //      $("#showEvents table").empty()
-    //      $("#hideEvents").text("Show Events")
-    //      $("#hideEvents").attr('id','allEvents')
-    //      e.preventDefault();
-    // });
+    class Event{
+      constructor(obj) {
+        this.name = obj.name,
+        this.budget = obj.budget,
+        this.id = obj.id,
+        this.user_id = obj.user.id
+      }
+
+
+
+
+
+      //Expense Prototype for format info to add to DOM
+      formatEventData(){
+        return(`
+          <tr>
+            <td>${this.name}</td>
+            <td>${this.budget}</td>
+            <td><a href="/users/${this.user_id}/events/${this.id}\">More Info</a></td>
+          </tr>
+          `)
+      }
+    }
+
 
 
 
@@ -49,12 +67,7 @@ $( document ).on('turbolinks:load', function() {
           success: function(response) {
             let expense = new Expense(response)
              $("#expense_table").append(expense.formatExpenseData())
-            // $("#expense_table").append("<tr><td>" +response["name"]+ "</td><td>" +  "$" + parseInt(response["cost"]).toFixed(2) + "</td><td>" +response["quantity"] +
-            // "</td><td>$"+(parseInt(response["cost"]) * parseInt(response["quantity"])).toFixed(2) + "</td><td>" +
-            // "<a href=\"/users/" + response["event"]["user_id"]+ "/events/"+ response["event"]["id"]+"/expenses/"+ response["id"]+"/edit\">Edit</a>"
-            // + "</td><td>" +
-            // "<a  data-method=\"delete\", href=\"/users/" + response["event"]["user_id"]+ "/events/"+ response["event"]["id"]+"/expenses/"+ response["id"]+"\">Delete</a>"
-            // +"</td></tr>"  )
+
           }
         })
 
@@ -77,6 +90,7 @@ $( document ).on('turbolinks:load', function() {
         this.user_id = obj.event.user_id,
         this.event_id = obj.event.id
       }
+      //Expense Prototype for format info to add to DOM
       formatExpenseData(){
         return(`
           <tr>
