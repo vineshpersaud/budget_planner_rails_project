@@ -13,11 +13,11 @@ This is Event Budget planner application. Users can Create many events and add e
 
 ## How to use application
   #### Sign up/Sign in
-  -  At Homepage You can sign up for a account or log in with facebook
-     if you already have account login with the link at left top corner
+    -  At Homepage You can sign up for a account or log in with facebook
+       if you already have account login with the link at left top corner
   #### Mange Event
-  - Once logged you can create  a new event by clicking "Click to create New Event!" and filling out and submitting event info.
-  - To delete a event go to the Homepage by clicking "home" link on top left then delete next to event .
+    - Once logged you can create  a new event by clicking "Click to create New Event!" and filling out and submitting event info.
+    - To delete a event go to the Homepage by clicking "home" link on top left then delete next to event .
 
   #### Editing Updating Event
     - Navigate to event path by clicking on name on Homepage.
