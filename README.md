@@ -19,10 +19,12 @@ This is Event Budget planner application. Users can Create many events and add e
   - Once logged you can create  a new event by clicking "Click to create New Event!" and filling out and submitting event info.
   - To delete a event go to the Homepage by clicking "home" link on top left then delete next to event .
 
+  #### Editing Updating Event
+  - To add expense to event navigate to event path by clicking on name on Homepage then filling out info on first form on page and clicking "Add Expense" 
 
 MIT License
 
-Copyright (c) [2018] [Vinesh Persaud]
+Copyright © 2019  Vinesh Persaud
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
