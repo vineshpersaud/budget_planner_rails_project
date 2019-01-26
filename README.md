@@ -20,7 +20,10 @@ This is Event Budget planner application. Users can Create many events and add e
   - To delete a event go to the Homepage by clicking "home" link on top left then delete next to event .
 
   #### Editing Updating Event
-  - To add expense to event navigate to event path by clicking on name on Homepage then filling out info on first form on page and clicking "Add Expense" 
+    - Navigate to event path by clicking on name on Homepage.
+        - To add expense fill out info on first form on page and clicking "Add Expense".
+        - To Edit name or budget click "Edit Event" on green text box enter new information and submit.
+        - To invite a new guest pick from guest list or enter new name and click "add new guest" button.
 
 MIT License
 
