@@ -40,17 +40,33 @@ $( document ).on('turbolinks:load', function() {
           .then(response => response.json())
           .then(json =>
             $("#list").append(formatShoppingList(json.expenses))
-
             );
 
    })
 
-   function formatShoppingList(json){
-     debugger
+   function turnToDollar(amount){
      return(
-       json.map(expense =>
-          `<tr><td>${expense.name}</td></tr>`).join('')
+      '$'+parseInt(amount).toFixed(2)
      )
+   }
+
+   function formatShoppingList(json){
+     let list = json.map(expense =>
+              `<tr>
+                 <td>${expense.name}</td>
+                 <td>${turnToDollar(expense.cost)}</td>
+                 <td>${expense.quantity}</td>
+               </tr>`).join('')
+     return(
+       `<table>
+             <tr>
+               <th>Name</th>
+               <th>Price</th>
+               <th>Quantity</th>
+               ${list}
+             </tr>
+          </table>`
+        )
    }
 
   });
