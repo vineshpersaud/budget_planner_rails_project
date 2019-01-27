@@ -28,10 +28,15 @@ $( document ).on('turbolinks:load', function() {
           $guest.attr('class','data_block')
           $event.append( "<table><tr><th>Name</th><th>Cost</th><th>Quantity</th></tr>"+ expenses.join('') +"</table>")
           $event.attr('class','data_block')
-          
+
 
        }
      })
+   })
+
+   $("#shopping_list").on('click',function(e){
+          e.preventDefault();
+          alert("working")
    })
 
   });
