@@ -35,6 +35,11 @@ class UsersController < ApplicationController
     @ended_events = Event.over.map {|event|  event if event.user_id == @user.id && event}.compact
   end
 
+  def show
+    @user = User.find(session[:user_id])
+    render json: @user
+  end
+
   def homepage
     @user = User.find(session[:user_id])
   end
