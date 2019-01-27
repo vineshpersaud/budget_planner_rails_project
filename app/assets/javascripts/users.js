@@ -36,7 +36,21 @@ $( document ).on('turbolinks:load', function() {
 
    $("#shopping_list").on('click',function(e){
           e.preventDefault();
-          alert("working")
+          fetch(this.href)
+          .then(response => response.json())
+          .then(json =>
+            $("#list").append(formatShoppingList(json.expenses))
+
+            );
+
    })
+
+   function formatShoppingList(json){
+     debugger
+     return(
+       json.map(expense =>
+          `<tr><td>${expense.name}</td></tr>`).join('')
+     )
+   }
 
   });
