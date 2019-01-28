@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def login
     @user = User.new
+    binding.pry
   end
 
   def create
