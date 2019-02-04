@@ -1,6 +1,24 @@
 //https://stackoverflow.com/questions/36110789/rails-5-how-to-use-document-ready-with-turbo-links
 // sloves turbolinks ready error
 $( document ).on('turbolinks:load', function() {
+    $("#sortBudget").on("click",function(e){
+      e.preventDefault();
+     url = this.href
+     $.ajax({
+       method: "GET",
+       url: url,
+       dataType: "json",
+       success: function (response) {
+         let allEvents = response.map(event=> new Event(event))
+         let sortedEvents = allEvents.sort(function(a,b){return parseInt(b.budget) - parseInt(a.budget)})
+         let formattedEvents = allEvents.map(event=> event.formatEventData()).join('')
+
+         $("#showEvents table").empty()
+         $("#showEvents").append("<table><tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
+       }
+     })
+    })
+
 
     $("#allEvents").on("click",function(e){
        e.preventDefault();
@@ -8,11 +26,11 @@ $( document ).on('turbolinks:load', function() {
       $.ajax({
         method: "GET",
         url: url,
-        datatype: "json",
+        dataType: "json",
         success: function (response) {
           let allEvents = response.map(event=> new Event(event))
           let formattedEvents = allEvents.map(event=> event.formatEventData()).join('')
-          
+
           $("#showEvents table").empty()
           $("#showEvents").append("<table><tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
         }

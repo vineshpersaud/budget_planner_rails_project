@@ -3,7 +3,8 @@
 
  <!–User events using Jquery–>
 <div id="showEvents" class="data_block">
-  <a href="/users/1/events.json" id="allEvents" type="submit">Show Events</a>
+  <a href="/users/<%=@user.id%>/events.json" id="allEvents" type="submit">Show Events</a>
+  <a id= "sortBudget" href="/users/<%=@user.id%>/events.json">Sort By Budget</a>
   <table>
 
   </table>

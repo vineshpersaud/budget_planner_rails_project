@@ -25,8 +25,9 @@ class EventsController < ApplicationController
       @expenses  = @event.expenses.all
       @difference = @event.budget_difference
       respond_to do |format|
+          format.json {render json: @event, status: 200}
         format.html {render :show}
-        format.json {render json: @event, status: 200}
+
       end
     else
       redirect_to root_url

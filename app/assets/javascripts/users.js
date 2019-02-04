@@ -5,7 +5,7 @@ $( document ).on('turbolinks:load', function() {
      $.ajax({
        method: "GET",
        url: url,
-       datatype: "json",
+       dataType: "json",
        success: function (response) {
          let expenses = response["expenses"].map(expense =>
            "<tr> <td>"
