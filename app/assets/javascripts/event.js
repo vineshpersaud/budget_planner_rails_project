@@ -11,7 +11,6 @@ $( document ).on('turbolinks:load', function() {
        success: function (response) {
          let allEvents = response.map(event=> new Event(event))
          let sortedEvents = allEvents.sort(function(a,b){return parseInt(b.budget) - parseInt(a.budget)})
-         let formattedEvents = allEvents.map(event=> event.formatEventData()).join('')
 
          $("#showEvents table").empty()
          $("#showEvents").append("<table><tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
@@ -21,8 +20,13 @@ $( document ).on('turbolinks:load', function() {
 
 
     $("#allEvents").on("click",function(e){
-       e.preventDefault();
+      e.preventDefault();
       url = this.href
+      if ($("#showEvents table").text().length > 0){
+        $("#showEvents table").empty()
+        $("#allEvents").text("Show Events")
+      }
+      else{
       $.ajax({
         method: "GET",
         url: url,
@@ -30,12 +34,15 @@ $( document ).on('turbolinks:load', function() {
         success: function (response) {
           let allEvents = response.map(event=> new Event(event))
           let formattedEvents = allEvents.map(event=> event.formatEventData()).join('')
-
+          $("#allEvents").text("Hide Events")
           $("#showEvents table").empty()
           $("#showEvents").append("<table><tr><th>Event name</th><th>Budget</th><th></th></tr>" + formattedEvents + "</table>")
         }
-      })
+      })}
+
     })
+
+
 
     class Event{
       constructor(obj) {

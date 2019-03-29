@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   get 'users/home'
 
-
   post "events/create", to: "events#create"
 
   post "expenses/create", to: "expenses#create"
