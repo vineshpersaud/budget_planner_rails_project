@@ -1,17 +1,33 @@
 # Rails Event Budget Planner Project
 
 
-## Purpose of project
-This Web Rails application is one of my projects for Learn Verified Online (Learn.co) and to 
-help use the knowledge I have gained so far.
-
 ## What is it?
-This is Event Buget planner application. Users can Create many events and add expenses do those events and manage left over budget.
+This is Event Budget planner application. Users can Create many events and add expenses to those events and manage left over budget.Users can also manage a guest list and invite new guest.
 
+## How To Run
+  1. Fork  And clone to local System .(https://help.github.com/articles/fork-a-repo/)
+  2. In terminal change directory to location where you cloned Budget Planner .
+  3. Type "bundle install" and run command
+  4. Type "rails s" to start rails server
+  5. Then navigate to  your local rails server path in browser which by default should be "http://localhost:3000"
+
+## How to use application
+  #### Sign up/Sign in
+    -  At Homepage You can sign up for a account or log in with facebook
+       if you already have account login with the link at left top corner
+  #### Mange Event
+    - Once logged you can create  a new event by clicking "Click to create New Event!" and filling out and submitting event info.
+    - To delete a event go to the Homepage by clicking "home" link on top left then delete next to event .
+
+  #### Editing Updating Event
+    - Navigate to event path by clicking on name on Homepage.
+        - To add expense fill out info on first form on page and clicking "Add Expense".
+        - To Edit name or budget click "Edit Event" on green text box enter new information and submit.
+        - To invite a new guest pick from guest list or enter new name and click "add new guest" button.
 
 MIT License
 
-Copyright (c) [2018] [Vinesh Persaud]
+Copyright © 2019  Vinesh Persaud
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

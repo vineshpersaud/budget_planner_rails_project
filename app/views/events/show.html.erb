@@ -1,12 +1,19 @@
 <h3>Event Creator -  <%=@user.name%></h3>
 <br>
 
+ <!–User events using Jquery–>
+<div id="showEvents" class="data_block">
+  <a href="/users/<%=@user.id%>/events.json" id="allEvents" type="submit">Show Events</a>
+  <table></table>
+</div>
+<br><br>
+
+<!– EVENT Active status ->
 <% if @event.active  == true %>
-  <h5>Event Status- Ongoing</h5>
- <%else%>
- <h5>Event Status- Over</h5>
+    <h5>Event Status- Ongoing</h5>
+   <%else%>
+   <h5>Event Status- Over</h5>
  <%end%>
- 
 
  <!–button to end event –>
  <div>
@@ -18,24 +25,29 @@
 </div>
 
 <!– EVENT INFO ->
-<table align="center">
-  <tr>
-    <th>Event name</th>
-    <th>Budget</th>
-    <th></th>
+<div class="data_block", id="event_name">
+  <table align="center">
+    <tr>
+      <th>Event name</th>
+      <th>Budget</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><h4><%= @event.name %></h4></td>
+      <td><h4><%= number_to_currency(@event.budget)%></h4></td>
+      <td><h4><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></h4></td>
   </tr>
-  <tr>
-    <td><%= @event.name %></td>
-    <td><%= number_to_currency(@event.budget)%></td>
-    <td><%= link_to "Edit Event", edit_user_event_path(@user, @event)%></td>
-</tr>
 </table>
 
 <br>
+</div>
 
+
+
+<div class="data_block">
 
 <!– List of EXPENSES  –>
-<table align="center">
+<table align="center", id="expense_table">
     <tr>
       <th>Name</th>
       <th>Cost</th>
@@ -43,9 +55,9 @@
       <th>Total</th>
     </tr>
   <% @expenses.each do |expense|%>
-    <tr>
-      <td><%= expense.name %></td> 
-      <td><%= number_to_currency(expense.cost) %></td> 
+    <tr >
+      <td><%= expense.name %></td>
+      <td><%= number_to_currency(expense.cost) %></td>
       <td><%= expense.quantity %></td>
       <td><%= number_to_currency(expense.total) %></td>
       <td><%= link_to "Edit", edit_user_event_expense_path(expense.event.user_id,expense.event_id,expense)%></td>
@@ -56,7 +68,7 @@
 
 <br><br>
 
-<h3>Budget Balance <%= @difference%></h3> <br><br>  
+<h3>Budget Balance <%= @difference%></h3> <br><br>
 
   <% if flash[:alert] %>
     <ul>
@@ -88,28 +100,30 @@
     <%=f.label :quantity%>
     <%= f.number_field :quantity, value: 1%>
     <%= f.hidden_field :event_id, :value => params[:id] %>
-    <%= f.submit "Add expense "%>
+    <%= f.submit "Add expense", data: { disable_with: false } %>
   <%end%>
   <br>
+</div>
 
   <!– Form for new guest  –>
-  <div>
-    <%= form_for @guest, url: user_event_guests_path(@user,@event,@guest) do |f|%>
-      <%= f.collection_select :id, Guest.all, :id, :name, :include_blank => true %>
-      <%f.label :name%>
-      <%= f.text_field :name%>
-      <%= f.hidden_field :event_id, :value => params[:id] %>
-      <%=f.submit "Add New Guest"%>
-    <%end%>
-  </div>
+  <div class="data_block">
+    <div>
+      <%= form_for @guest, url:  new_user_event_guest_path(@user,@event) do |f|%>
+        <%= f.label :Guest %>
+        <%= f.collection_select :id, Guest.all, :id, :name ,:include_blank => true%>
+        <%f.label :name%>
+        <%= f.text_field :name,  id: 'new_guest_name'%>
+        <%= f.hidden_field :event_id, :value => params[:id] %>
+        <%=f.submit "Add New Guest" %>
+      <%end%>
+    </div>
 
-<%end%>
-
-<h2>Guest List</h2>
-<ul>
-  <%@guests.each do |guest|%>
-    <li><%= link_to guest.name, guest_path(guest) %></li>
   <%end%>
-</ul>
 
-
+  <h2>Guest List</h2>
+    <ul id="guest_list">
+      <%@guests.each do |guest|%>
+        <li><%= link_to guest.name, guest_path(guest) %></li>
+      <%end%>
+    </ul>
+  </div>

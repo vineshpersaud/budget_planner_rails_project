@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
 
   def create
     if    request.env['omniauth.auth']
-          oauth_email = request.env["omniauth.auth"]["info"]["email"] 
+          oauth_email = request.env["omniauth.auth"]["info"]["email"]
           @user = User.find_or_create_by(email: oauth_email) do |u|
           u.name = request.env["omniauth.auth"]["info"]["name"]
           u.email = request.env["omniauth.auth"]["info"]["email"]
           u.password = SecureRandom.hex
       end
         session[:user_id] = @user.id
-        redirect_to users_home_url        
+        redirect_to users_home_url
     else
     flash[:password] = "Missing Password field" if params[:user][:password] == ""
     flash[:email] = "Missing E-mail field" if params[:user][:email] == ""

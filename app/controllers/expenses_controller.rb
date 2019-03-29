@@ -22,9 +22,10 @@ class ExpensesController < ApplicationController
       @event =  Event.find(params[:expense][:event_id])
       @expense = @event.expenses.build(expense_params)
       @expense.save
-      redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+      #redirect_to user_event_path(@user,@expense.event_id),:flash => { :alert => @expense.errors.full_messages }
+      render json: @expense
     else
-      redirect_to root_url 
+      redirect_to root_url
     end
   end
 
@@ -48,7 +49,7 @@ class ExpensesController < ApplicationController
   def set_user
     @user = session[:user_id]
   end
-  
+
   def expense_params
      params.require(:expense).permit(:name,:cost,:quantity,:event_id)
   end

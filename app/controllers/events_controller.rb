@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show,:edit,:update,:destroy,:deactivate]
-  before_action :set_user, only: [:show,:edit,:update,:destroy,:deactivate]
-  
+  before_action :set_user, only: [:show,:edit,:update,:destroy,:deactivate,:index]
+
   def new
     @event = Event.new
   end
@@ -17,13 +17,29 @@ class EventsController < ApplicationController
   end
 
   def show
-    @guests = @event.guests.ordered_by_name
-    params[:event_id] = @event.id
-    @user = User.find(@event.user_id)
-    @expense = Expense.new
-    @guest = Guest.new
-    @expenses  = @event.expenses.all
-    @difference = @event.budget_difference
+    if @user == @event.user_id
+      @guests = @event.guests.ordered_by_name
+      @user = User.find(@event.user_id)
+      @expense = Expense.new
+      @guest = Guest.new
+      @expenses  = @event.expenses.all
+      @difference = @event.budget_difference
+      respond_to do |format|
+          format.json {render json: @event, status: 200}
+        format.html {render :show}
+
+      end
+    else
+      redirect_to root_url
+    end
+  end
+
+  def index
+    current_user = User.find(@user)
+    @events = current_user.events
+    respond_to do |format|
+      format.json{render json: @events, status:200}
+    end
   end
 
   def edit
@@ -47,7 +63,7 @@ class EventsController < ApplicationController
       @event.active = !@event.active
       @event.save
       redirect_to user_event_path(@user,@event)
-    else  
+    else
       redirect_to root_url
     end
   end
@@ -58,7 +74,7 @@ class EventsController < ApplicationController
     def set_user
       @user = session[:user_id]
     end
-  
+
 
     def set_event
       @event = Event.find(params[:id])
