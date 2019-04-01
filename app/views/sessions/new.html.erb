@@ -1,21 +1,19 @@
-<h4><%= link_to 'Sign up', root_path %></h4>  
+<h4><%= link_to 'Sign up', root_path %></h4>
 <h1>Existing User Login</h1>
 
 
 <% flash.each do |key, value| %>
         <div class="alert alert-danger" ><%= value %></div>
 <% end %>
-  
+
 <div class="form">
   <%= form_for @user , :url => url_for(:controller => 'sessions', :action => 'create') do  |f| %>
     <%= f.label :email %>
-    <%= f.text_field :email %><br><br>
+    <%= f.text_field :email, :value=> "demouser@gmail.com" %><br><br>
     <%= f.label :password %>
-    <%= f.password_field :password %><br><br>
+    <%= f.password_field :password, :value=> "demouser"  %><br><br>
     <%= f.submit "Login"%>
   <% end %>
+  <p>You can log in without signing up  by using the demo user default values.</p>
 </div>
 <br><br>
-
-
-

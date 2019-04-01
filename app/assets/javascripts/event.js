@@ -77,7 +77,14 @@ $( document ).on('turbolinks:load', function() {
           data: data,
           success: function(response) {
             let expense = new Expense(response)
-             $("#expense_table").append(expense.formatExpenseData())
+            let balance = parseInt($("#budget_balance").text())
+            $("#expense_name").val('')
+            $("#expense_cost").val('')
+            $("#expense_quantity").val(1)
+            debugger
+
+            $("#budget_balance").text((balance-expense.total).toFixed(2))
+            $("#expense_table").append(expense.formatExpenseData())
           }
         })
          e.preventDefault();
@@ -97,7 +104,8 @@ $( document ).on('turbolinks:load', function() {
         this.cost = obj.cost,
         this.id = obj.id
         this.user_id = obj.event.user_id,
-        this.event_id = obj.event.id
+        this.event_id = obj.event.id,
+        this.total = obj.quantity * obj.cost
       }
       //Expense Prototype for format info to add to DOM
       formatExpenseData(){

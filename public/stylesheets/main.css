@@ -26,7 +26,7 @@ body{
 
 table {
     width: 90%;
-    
+
 }
 
 th {
@@ -41,10 +41,11 @@ th, td {
 }
 
 .form{
-  padding: 70%: 
-  width: 100%;
+  position: inherit;
+  padding: 70%;
+  width: 500px;
   padding: 85px;
-  margin-left: 38%;
+  margin-left: 25%;
   margin-top: 8%;
   display: inline-block;
   border: none;
@@ -73,6 +74,3 @@ li  {
   font-size: 14px;
   border-radius: 25px;
 }
-
-
-
