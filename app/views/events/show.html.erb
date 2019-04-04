@@ -68,7 +68,7 @@
 
 <br><br>
 
-<h3>Budget Balance $<span id="budget_balance"><%= @difference%></span></h3> <br><br>
+<h3>Budget Balance $<span id="budget_balance"><%= '%.2f' % @difference%></span></h3> <br><br>
 
   <% if flash[:alert] %>
     <ul>
