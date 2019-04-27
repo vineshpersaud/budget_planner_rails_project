@@ -4,6 +4,8 @@
 ## What is it?
 This is Event Budget planner application. Users can Create many events and add expenses to those events and manage left over budget.Users can also manage a guest list and invite new guest.
 
+![site preview](https://cdn-images-1.medium.com/max/2400/1*Ts_88WwXx5iPV8Qj1nvqfA.png)
+
 ## How To Run
   1. Fork  And clone to local System .(https://help.github.com/articles/fork-a-repo/)
   2. In terminal change directory to location where you cloned Budget Planner .
